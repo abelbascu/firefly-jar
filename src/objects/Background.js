@@ -13,17 +13,18 @@ export default class Background {
       return;
     }
     // moon: soft and far away
-    makeGlow(scene, 830, 130, PALETTE.jar, 260).setAlpha(0.35).setDepth(1);
-    scene.add.circle(830, 130, 44, PALETTE.jar, 0.9).setDepth(1);
+    const mx = W - 194;
+    makeGlow(scene, mx, 130, PALETTE.jar, 260).setAlpha(0.35).setDepth(1);
+    scene.add.circle(mx, 130, 44, PALETTE.jar, 0.9).setDepth(1);
 
     // stars: gentle, slow twinkle (never flashing)
     for (let i = 0; i < TUNING.starCount; i++) {
-      const s = scene.add.circle(Phaser.Math.Between(10, W - 10), Phaser.Math.Between(10, 380), Phaser.Math.Between(2, 4), PALETTE.jar, 0.5).setDepth(1);
+      const s = scene.add.circle(Phaser.Math.Between(10, W - 10), Phaser.Math.Between(10, Math.round(H * 0.5)), Phaser.Math.Between(2, 4), PALETTE.jar, 0.5).setDepth(1);
       scene.tweens.add({ targets: s, alpha: 0.15, duration: Phaser.Math.Between(2500, 4500), ease: 'Sine.easeInOut', yoyo: true, repeat: -1, delay: Phaser.Math.Between(0, 3000) });
     }
 
     // rolling bushes: opaque leaf shapes, dimmed into the night with a flat overlay
-    const layers = [[0.72, 620, 60], [0.5, 690, 80]];
+    const layers = [[0.72, H - 148, 60], [0.5, H - 78, 80]];
     layers.forEach(([dim, top, r], li) => {
       const g = scene.add.graphics().setDepth(2);
       g.fillStyle(PALETTE.leaves, 1);
@@ -36,7 +37,7 @@ export default class Background {
     const g = scene.add.graphics().setDepth(2);
     // a few blossoms in the accent colour
     for (let i = 0; i < 7; i++) {
-      const x = 60 + i * 150 + Phaser.Math.Between(-30, 30), y = Phaser.Math.Between(670, 740);
+      const x = 60 + i * ((W - 120) / 6) + Phaser.Math.Between(-30, 30), y = Phaser.Math.Between(H - 98, H - 28);
       g.fillStyle(PALETTE.accent, 0.55).fillCircle(x, y, 9);
     }
   }

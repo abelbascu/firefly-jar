@@ -21,7 +21,8 @@ export default class Firefly {
     this.setTex(this.idleKey());
 
     // Invisible tap circle, bigger than the sprite. Follows the container.
-    const r = TUNING.hitRadius;
+    // displayScale > 1 means the stage is shrunk on screen (phones): grow the circle to keep it finger-sized
+    const r = Math.max(TUNING.hitRadius, (TUNING.minHitCssPx / 2) * (scene.scale.displayScale?.x || 1));
     this.zone = scene.add.zone(x, y, r * 2, r * 2).setDepth(11)
       .setInteractive({ hitArea: new Phaser.Geom.Circle(r, r, r), hitAreaCallback: Phaser.Geom.Circle.Contains, useHandCursor: true });
     this.zone.fireflyRef = this;

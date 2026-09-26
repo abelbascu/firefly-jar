@@ -4,14 +4,14 @@ import { makeGlow } from './glow.js';
 
 // Soft rainbow in palette colours only; sweeps in slowly, shimmers gently, then fades.
 export function playRainbow(scene) {
-  const cx = GAME.width / 2, cy = 640, bands = [PALETTE.accent, PALETTE.glow, PALETTE.leaves, PALETTE.jar];
+  const cx = GAME.width / 2, cy = GAME.height - 128, R = Math.min(400, GAME.width / 2 - 40), bands = [PALETTE.accent, PALETTE.glow, PALETTE.leaves, PALETTE.jar];
   const g = scene.add.graphics().setDepth(3).setAlpha(0.6);
   const draw = (t) => {
     g.clear();
     bands.forEach((c, i) => {
       g.lineStyle(26, c, 1);
       g.beginPath();
-      g.arc(cx, cy, 400 - i * 26, Math.PI, Math.PI + Math.PI * t, false);
+      g.arc(cx, cy, R - i * 26, Math.PI, Math.PI + Math.PI * t, false);
       g.strokePath();
     });
   };
@@ -45,7 +45,7 @@ export function playFlock(scene, jar) {
       glow.y = glowY;
     }
     const tx = 90 + (i * (GAME.width - 180)) / (n - 1) + Phaser.Math.Between(-25, 25);
-    const ty = Phaser.Math.Between(90, 380);
+    const ty = Phaser.Math.Between(90, Math.round(GAME.height * 0.5));
     const delay = 250 + i * 170;
     const dur = Phaser.Math.Between(2800, 3600);
     scene.tweens.add({ targets: box, x: tx, y: ty, delay, duration: dur, ease: 'Sine.easeOut' });

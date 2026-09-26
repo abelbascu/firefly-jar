@@ -6,14 +6,17 @@ export const PALETTE = {
   jar: 0xfff4e0,
 };
 
-export const GAME = { width: 1024, height: 768 };
+// Stage size is chosen once at boot: 1024x768 landscape (iPad), 768x1024 on portrait phones/tablets.
+export const PORTRAIT = typeof window !== 'undefined' && window.innerHeight > window.innerWidth;
+export const GAME = PORTRAIT ? { width: 768, height: 1024 } : { width: 1024, height: 768 };
 
 export const TUNING = {
   // fireflies
   fireflyCount: 10, // = jarTarget: catch them all, then celebrate
   fireflyWidth: 110, // display width px (height follows the sprite's aspect)
-  hitRadius: 56, // invisible tap circle (112px diameter, larger than the sprite body)
-  wander: { minX: 70, maxX: 954, minY: 80, maxY: 520 },
+  hitRadius: 56, // invisible tap circle in game px (112 diameter); Firefly grows it so it is >= minHitCssPx on screen
+  minHitCssPx: 100, // on-screen diameter floor (spec: >= 96px) even when the stage is scaled down on a phone
+  wander: { minX: 70, maxX: GAME.width - 70, minY: 80, maxY: GAME.height - 248 },
   moveMs: [2600, 5200], // duration of one eased leg
   hoverMs: [500, 1600], // pause between legs (front-idle pose)
   flapFrameMs: 70, // 12 baked side frames, looped
@@ -25,8 +28,8 @@ export const TUNING = {
   callRadius: 320, // how far a tap "calls" fireflies (mechanic)
   callDriftMs: 2600,
   // jar
-  jarX: 512,
-  jarY: 625,
+  jarX: GAME.width / 2,
+  jarY: GAME.height - 143,
   jarWidth: 210,
   jarTarget: 10,
   jarGlowMin: 0.12,
