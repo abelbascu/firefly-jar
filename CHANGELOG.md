@@ -63,3 +63,7 @@
 - Archived unused work to `assets/_archive/`: `exploration/firefly_style_tests` (v1-v5, v7-v8), `exploration/side_per_frame` (per-frame side poses + old GIFs), `sprites_unused` (v0 fireflies yellow/green/pink, layer sprites). Manifest cleaned.
 - `HANDOFF.md` -> `docs/archive/`; duplicate assignment docx -> `docs/archive/`.
 - New `docs/ASSETS.md` lists the approved asset keys for the game code.
+
+## 2026-09-26 — Planning session log added
+- Added `docs/PLANNING_SESSION_LOG.md` (pre-build conversation from the Claude desktop app) and `docs/FIREFLY_JAR_SETUP.md` (the setup spec it produced).
+- `PROMPTS_VERBATIM.md` now has Part A (desktop-app prompts, verbatim) and Part B (VS Code hook entries).
