@@ -29,8 +29,8 @@
   },
   "ambience": {
     "file": "ambience.mp3",
-    "version": "v3_01",
-    "source": "synth",
+    "version": "user_firefly_meadow",
+    "source": "user-supplied: audio/Firefly Meadow.mp3",
     "date": "2026-09-26",
     "loop": true
   },

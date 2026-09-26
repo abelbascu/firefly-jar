@@ -97,3 +97,5 @@ BUILD 8: Per user feedback, no respawn on catch: round starts with 10 fireflies,
 BUILD 9: Catch notes are now random within the pentatonic scale (no repeats, max 2-step leaps) instead of a fixed do-re-mi run, so any order sounds tuneful. ~3 min.
 
 BUILD 10: Celebration reworked per feedback: all 10 fireflies (mixed poses + green/pink variants) float out of the jar, with an animated palette-only rainbow (accent/glow/leaves/jar) that sweeps in, shimmers, fades. Firefly glow shrunk and offset onto the bulb only. AI note: test timed out at default 30s after the longer celebration; raised to 90s. ~15 min.
+
+AUDIO: ambience loop replaced with the user's own track "Firefly Meadow" (3:04, copied unmodified to public/audio/ambience.mp3; synth pad archived). Zero code change thanks to audio.json; game loops it at volume 0.18. ~3 min.
