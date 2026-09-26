@@ -25,3 +25,5 @@ ART: imported jar from jar.png (2026-09-26)
 - `sfx.py` left empty mp3s on failed calls; fixed to write only after a successful response.
 
 ART: picked firefly v6_02 (gemini-3.1-flash-image, 2026-09-26)
+
+BUILD 1: Firefly.js — Sine-eased wandering legs with hover pauses, flap-frame support (falls back to the single sprite until side frames exist), invisible 112px tap circle, code-drawn additive pulsing glow (glow.js). Smoke test + screenshot OK. ~15 min.
