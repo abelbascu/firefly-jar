@@ -1,0 +1,40 @@
+style: >
+  Flat 2D children's game asset, soft rounded shapes, no hard edges, no photorealism,
+  thick soft dark-navy outline, gentle pastel shading, cute and calm, for ages 4-7.
+  Palette strictly: night blue #2B3A67, firefly glow #FFD166, leaf green #7BC47F,
+  pink accent #F4A6B7, cream highlight #FFF4E0.
+  Single centered subject, full body visible, generous empty margin around it.
+  Plain flat solid pure magenta #FF00FF background, no shadow on the background,
+  no gradient, no text, no border, no glow halo around the subject.
+
+assets:
+  firefly:
+    v1:
+      model: gemini-3.1-flash-image
+      refs: [art/ref/firefly_yellow.png, art/ref/character_sheet.png]
+      prompt: >
+        The same firefly character as the reference: round navy head, two antennae with
+        ball tips, rosy cheeks, small smile, translucent cream-outlined wings, glowing
+        yellow abdomen. Gentle flying pose, three-quarter view.
+      out_px: 256
+  jar:
+    v1:
+      model: gemini-3.1-flash-image
+      refs: [art/ref/jar.png]
+      prompt: >
+        Empty rounded glass mason jar, lid resting open and tilted on top, drawn as
+        cream #FFF4E0 rounded outlines with a soft translucent body and one highlight
+        stroke. Front view, no contents, clean edges.
+      out_px: 512
+  background:
+    v1:
+      model: gemini-3.1-flash-image
+      refs: []
+      no_cutout: true
+      aspect: "4:3"
+      prompt: >
+        Calm night garden game background, 4:3 landscape, dark navy sky #2B3A67,
+        soft rounded bushes and grass in #7BC47F along the bottom third, a few tiny
+        distant dots of light, large empty open space in the middle for gameplay,
+        flat shapes, no characters, no jar, no text.
+      out_px: 2048

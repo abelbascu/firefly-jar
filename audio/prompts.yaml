@@ -1,0 +1,15 @@
+style: >
+  Gentle, soft, warm, for a calm toddler game at night. No harsh transients,
+  no loud bass, no scary tones, no voices.
+
+sounds:
+  catch:
+    v1: { type: sfx, seconds: 0.8, prompt: "a single soft glass chime twinkle, like a firefly landing in a glass jar" }
+  jar_fill:
+    v1: { type: sfx, seconds: 1.0, prompt: "soft rising magical shimmer, one gentle sparkle" }
+  celebrate:
+    v1: { type: sfx, seconds: 3.0, prompt: "happy gentle celebration jingle, music box and soft bells, short and joyful" }
+  tap_miss:
+    v1: { type: sfx, seconds: 0.4, prompt: "very soft muted bubble pop, barely there" }
+  ambience:
+    v1: { type: music, seconds: 60, prompt: "calm lullaby night garden loop, soft music box and gentle crickets, slow tempo, seamless loop" }
