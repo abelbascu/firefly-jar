@@ -7,6 +7,21 @@ style: >
   Plain flat solid pure magenta #FF00FF background, no shadow on the background,
   no gradient, no text, no border, no glow halo around the subject.
 
+# Style for the pose set derived from firefly v6_02 (chosen character). Do not edit; add a new one.
+style_v6_02: &v6_02_style >
+  Soft 2D-looking clay / plush toy illustration, rounded inflated forms like a vinyl or felt toy,
+  soft studio lighting, matte smooth materials, no sharp edges, cute and calm, for ages 4-7.
+  Wings are always SEMI-TRANSPARENT: delicate translucent membrane you can see through, with soft
+  pastel veins, lighter than the body.
+  The glowing part at the bottom is a SEMI-TRANSPARENT glass-like glowing orb shaped like an egg or
+  light bulb, with soft shading: brighter warm core, softer translucent edges, a gentle highlight;
+  the firefly's body sits on top of it as if seated in the egg.
+  Palette strictly: night blue #2B3A67, firefly glow #FFD166, leaf green #7BC47F,
+  pink accent #F4A6B7, cream highlight #FFF4E0.
+  Single centered subject, full body visible, generous empty margin around it.
+  Plain flat solid pure magenta #FF00FF background, no shadow on the background,
+  no gradient, no text, no border, no glow halo around the subject.
+
 assets:
   firefly:
     v1:
@@ -140,3 +155,66 @@ assets:
         distant dots of light, large empty open space in the middle for gameplay,
         flat shapes, no characters, no jar, no text.
       out_px: 2048
+  firefly_pose_idle:
+    v1:
+      model: gemini-3.1-flash-image
+      group: firefly_v6_02_poses
+      refs: [art/ref/firefly_v6_02.png]
+      style: *v6_02_style
+      prompt: >
+        Exactly the same character as the reference image: same round navy head, same two ball-tipped antennae, same dot eyes, same pink cheeks, same seated-in-a-glowing-egg look, same clay/plush style and proportions, same size of head to body. Pose: hovering calmly, front view, both wings gently open at mid position, arms resting at the sides.
+      out_px: 256
+  firefly_pose_wings_up:
+    v1:
+      model: gemini-3.1-flash-image
+      group: firefly_v6_02_poses
+      refs: [art/ref/firefly_v6_02.png]
+      style: *v6_02_style
+      prompt: >
+        Exactly the same character as the reference image: same round navy head, same two ball-tipped antennae, same dot eyes, same pink cheeks, same seated-in-a-glowing-egg look, same clay/plush style and proportions, same size of head to body. Pose: mid-flap with both wings raised high above the back, front view, body slightly lower, arms relaxed.
+      out_px: 256
+  firefly_pose_wings_down:
+    v1:
+      model: gemini-3.1-flash-image
+      group: firefly_v6_02_poses
+      refs: [art/ref/firefly_v6_02.png]
+      style: *v6_02_style
+      prompt: >
+        Exactly the same character as the reference image: same round navy head, same two ball-tipped antennae, same dot eyes, same pink cheeks, same seated-in-a-glowing-egg look, same clay/plush style and proportions, same size of head to body. Pose: mid-flap with both wings swept low and down beside the body, front view, arms relaxed.
+      out_px: 256
+  firefly_pose_happy:
+    v1:
+      model: gemini-3.1-flash-image
+      group: firefly_v6_02_poses
+      refs: [art/ref/firefly_v6_02.png]
+      style: *v6_02_style
+      prompt: >
+        Exactly the same character as the reference image: same round navy head, same two ball-tipped antennae, same dot eyes, same pink cheeks, same seated-in-a-glowing-egg look, same clay/plush style and proportions, same size of head to body. Pose: overjoyed, both little arms raised up, eyes happily closed as curved arcs, big open smile, wings open wide.
+      out_px: 256
+  firefly_pose_sleepy:
+    v1:
+      model: gemini-3.1-flash-image
+      group: firefly_v6_02_poses
+      refs: [art/ref/firefly_v6_02.png]
+      style: *v6_02_style
+      prompt: >
+        Exactly the same character as the reference image: same round navy head, same two ball-tipped antennae, same dot eyes, same pink cheeks, same seated-in-a-glowing-egg look, same clay/plush style and proportions, same size of head to body. Pose: sleepy and calm, eyes closed as gentle curves, tiny smile, wings folded softly against the body, head tilted slightly, abdomen glowing softly.
+      out_px: 256
+  firefly_alt_green:
+    v1:
+      model: gemini-3.1-flash-image
+      group: firefly_v6_02_poses
+      refs: [art/ref/firefly_v6_02.png]
+      style: *v6_02_style
+      prompt: >
+        Exactly the same character as the reference image: same round navy head, same two ball-tipped antennae, same dot eyes, same pink cheeks, same seated-in-a-glowing-egg look, same clay/plush style and proportions, same size of head to body. Colour variant: identical pose to a calm hover, but the abdomen is a soft leaf-green #7BC47F glow and the wings have a faint green tint.
+      out_px: 256
+  firefly_alt_pink:
+    v1:
+      model: gemini-3.1-flash-image
+      group: firefly_v6_02_poses
+      refs: [art/ref/firefly_v6_02.png]
+      style: *v6_02_style
+      prompt: >
+        Exactly the same character as the reference image: same round navy head, same two ball-tipped antennae, same dot eyes, same pink cheeks, same seated-in-a-glowing-egg look, same clay/plush style and proportions, same size of head to body. Colour variant: identical pose to a calm hover, but the abdomen is a soft pink #F4A6B7 glow and the wings have a faint pink tint.
+      out_px: 256

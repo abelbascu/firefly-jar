@@ -26,5 +26,12 @@
     "version": "v0",
     "source": "import:jar.png",
     "date": "2026-09-26"
+  },
+  "firefly": {
+    "file": "firefly.png",
+    "file2x": "firefly@2x.png",
+    "version": "v6_02",
+    "source": "gemini-3.1-flash-image",
+    "date": "2026-09-26"
   }
 }

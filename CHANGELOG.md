@@ -33,3 +33,10 @@
   v5 3D Pixar-like render, v6 3D clay/plush toy, v7 2D illustration with rendered shading, v8 glossy 2D game-icon.
 - Known issue: glowing abdomens (v5, v7-01, v8-02) pick up a magenta/pink fringe from the chroma-key background;
   glow should be drawn in code anyway (see CLAUDE.md). Fix if one of these is chosen: prompt "no glow" + tighter despill.
+
+## 2026-09-26 — Firefly v6_02 chosen + pose set
+- Picked `firefly` = v6_02 (soft clay/plush, cute, not adult-looking) -> `public/sprites/firefly.png`. Raw candidate saved as `art/ref/firefly_v6_02.png` (reference for all poses).
+- `art.py`: added `group` support so derived sets live in `assets/_candidates/<group>/<key>/`.
+- Pose set generated into `assets/_candidates/firefly_v6_02_poses/`: idle, wings_up, wings_down, happy, sleepy + green/pink colour variants (2 candidates each; `_overview.png` shows all).
+- Design decisions from feedback: wings are semi-transparent; the glowing part is a translucent, shaded egg/bulb-like orb the firefly sits in (so glow can be layered in code).
+- Not yet picked.

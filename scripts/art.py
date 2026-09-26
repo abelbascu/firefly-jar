@@ -41,6 +41,11 @@ def asset_cfg(key, version=None):
     return version, cfg[version]
 
 
+def cand_dir(key, cfg):
+    """Candidates go to assets/_candidates/[group/]key; `group` keeps derived sets together."""
+    return CAND / cfg["group"] / key if cfg.get("group") else CAND / key
+
+
 def build_prompt(style, cfg):
     style = " ".join(cfg.get("style", style).split())  # per-version full override
     if cfg.get("no_cutout"):
@@ -88,7 +93,7 @@ def cmd_gen(a):
     prompt = build_prompt(load_prompts()["style"], cfg)
     refs = [Image.open(ROOT / p) for p in cfg.get("refs", [])]
     client = genai.Client()
-    out = CAND / a.key
+    out = cand_dir(a.key, cfg)
     out.mkdir(parents=True, exist_ok=True)
     start = len(list(out.glob(f"{version}_*.png")))
     for i in range(a.n):
@@ -177,7 +182,8 @@ def fit_longest(img, px):
 
 # ---------------------------------------------------------------- sheet
 def cmd_sheet(a):
-    d = CAND / a.key
+    _, latest = asset_cfg(a.key)
+    d = cand_dir(a.key, latest)
     files = sorted(p for p in d.glob("*.png") if not p.name.startswith("_"))
     if not files:
         sys.exit(f"No candidates in {d}")
@@ -243,7 +249,7 @@ def install_sprite(key, img, out_px, version, source, method="auto", skip_cutout
 def cmd_pick(a):
     version, cfg = asset_cfg(a.key, a.version)
     tag = f"{version}_{int(a.nn):02d}"
-    src = CAND / a.key / f"{tag}.png"
+    src = cand_dir(a.key, cfg) / f"{tag}.png"
     if not src.exists():
         sys.exit(f"Not found: {src}")
     model = PRO_MODEL if a.pro else cfg["model"]

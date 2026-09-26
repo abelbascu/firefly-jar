@@ -87,3 +87,28 @@ it can be 2D but rendered-like style
 ```
 do the test
 ```
+
+### 2026-09-26 12:10 — Claude Code
+```
+v6_02 is super cute!! v6_01 is almost there but it looks too adult, so v6_02 is perfect to create the different poses, create a new subfolder so we now the poses come from the v6_-02
+```
+
+### 2026-09-26 12:11 — Claude Code
+```
+one thing
+```
+
+### 2026-09-26 12:11 — Claude Code
+```
+the winds should be semitransparent
+```
+
+### 2026-09-26 12:12 — Claude Code
+```
+and the iluminatting bottom should be ready to have shades and semitransparency probably
+```
+
+### 2026-09-26 12:12 — Claude Code
+```
+i like the idea thet can be inferred that the light bulb at the bottom is like an egg where the firefly is seated
+```

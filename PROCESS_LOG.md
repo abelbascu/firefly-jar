@@ -23,3 +23,5 @@ ART: imported jar from jar.png (2026-09-26)
 - AI/agent mistake: committed `.env.example` after the user pasted a real Gemini key into it -> key leaked to the public repo, Google auto-disabled it. Fix: rotate key; keys only ever go in `.env`.
 - Gemini image API needed billing enabled (free tier quota 0). ElevenLabs: key ID vs secret (`sk_`) confusion.
 - `sfx.py` left empty mp3s on failed calls; fixed to write only after a successful response.
+
+ART: picked firefly v6_02 (gemini-3.1-flash-image, 2026-09-26)
