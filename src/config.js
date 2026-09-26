@@ -10,7 +10,7 @@ export const GAME = { width: 1024, height: 768 };
 
 export const TUNING = {
   // fireflies
-  fireflyCount: 7,
+  fireflyCount: 10, // = jarTarget: catch them all, then celebrate
   fireflyWidth: 110, // display width px (height follows the sprite's aspect)
   hitRadius: 56, // invisible tap circle (112px diameter, larger than the sprite body)
   wander: { minX: 70, maxX: 954, minY: 80, maxY: 520 },

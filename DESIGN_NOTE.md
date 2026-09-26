@@ -15,5 +15,5 @@ pleasant thing that also *helps* (fireflies gather, so the next tap is easier). 
 
 ## What I deliberately cut
 - Any score, counter, or text: the jar itself is the only progress display.
-- Timers, fail states, or lost fireflies: a caught firefly is replaced by a new one drifting in.
+- Timers, fail states, or lost fireflies: a round always has exactly 10 fireflies; after the celebration a fresh 10 drift in and the jar is empty again.
 - Dragging fireflies into the jar (too fiddly for small hands; one tap is enough).

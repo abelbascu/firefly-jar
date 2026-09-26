@@ -45,4 +45,5 @@ test('ten catches celebrate, then the round resets', async ({ page }) => {
   await page.waitForTimeout(6500);
   expect(await jarCount(page)).toBe(0);
   expect(await page.evaluate(() => window.__game.scene.getScene('MainScene').celebrating)).toBe(false);
+  expect(await page.evaluate(() => window.__game.scene.getScene('MainScene').fireflies.length)).toBe(10);
 });

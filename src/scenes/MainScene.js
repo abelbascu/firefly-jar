@@ -19,11 +19,15 @@ export default class MainScene extends Phaser.Scene {
     this.fireflies = [];
     this.celebrating = false;
     this.tapIndex = 0;
-    for (let i = 0; i < TUNING.fireflyCount; i++) this.spawnFirefly(false, TUNING.variants[i % TUNING.variants.length]);
+    this.spawnAll(false);
 
     this.input.on('gameobjectdown', (_p, obj) => obj.fireflyRef && this.catchFirefly(obj.fireflyRef));
     // The one extra mechanic: tapping empty night "calls" nearby fireflies.
     this.input.on('pointerdown', (p, over) => { if (!over.length) this.callFireflies(p.x, p.y); });
+  }
+
+  spawnAll(fadeIn) {
+    for (let i = 0; i < TUNING.fireflyCount; i++) this.spawnFirefly(fadeIn, TUNING.variants[i % TUNING.variants.length]);
   }
 
   spawnFirefly(fadeIn = false, variant = null) {
@@ -67,7 +71,6 @@ export default class MainScene extends Phaser.Scene {
         f.destroy();
         jar.add();
         this.sfx('jar_fill', TUNING.jarFillVolume);
-        this.spawnFirefly(true, f.variant); // nothing is ever lost: a new one drifts in
         if (jar.count >= TUNING.jarTarget) this.celebrate();
       },
     });
@@ -110,6 +113,7 @@ export default class MainScene extends Phaser.Scene {
       this.jar.reset(TUNING.resetFadeMs, () => {
         this.celebrating = false;
         this.tapIndex = 0;
+        this.spawnAll(true); // a fresh set of fireflies drifts in
         burst.destroy();
       });
     });

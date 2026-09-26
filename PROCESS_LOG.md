@@ -91,3 +91,5 @@ AUDIO: picked catch_do2 v3_01 (elevenlabs synth, 2026-09-26)
 AUDIO: picked jar_fill v3_01 (elevenlabs synth, 2026-09-26)
 
 AUDIO v3 (user feedback: ElevenLabs sounds too piercing/high, melody ugly): the AI could not steer the API toward low, tuneful sounds, so wrote scripts/synth_sfx.py (soft low sine tones, pentatonic/major scale, lowpass, echo, no highs) as a 'synth' version v3 in the same candidates/pick pipeline. Each tap now plays the next note of a rising do-re-mi-fa-sol-la-si-do' melody (catch_<note> keys); jar_fill is a low soft swell; ambience is a seamless quiet pad. Also removed colour variants (yellow only) and enlarged the hovering front pose (idleWidth) to match the side view. ~25 min.
+
+BUILD 8: Per user feedback, no respawn on catch: round starts with 10 fireflies, catching the last triggers the celebration, then 10 new ones fade in and the jar empties. Test now asserts 10 fireflies after reset. ~5 min.
