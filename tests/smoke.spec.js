@@ -85,3 +85,15 @@ test.describe('Android phone, portrait, touch', () => {
     expect(errors).toEqual([]);
   });
 });
+
+test('rotating a phone to landscape rebuilds the stage in landscape', async ({ page }) => {
+  await page.setViewportSize({ width: 393, height: 851 });
+  await page.goto('/firefly-jar/');
+  await page.waitForFunction(() => window.__game?.scene.getScene('MainScene')?.fireflies?.length > 0);
+  expect(await page.evaluate(() => window.__game.scale.gameSize.height)).toBe(1024);
+  await page.setViewportSize({ width: 851, height: 393 });
+  await page.waitForFunction(() => window.__game?.scene.getScene('MainScene')?.fireflies?.length > 0 && window.__game.scale.gameSize.width === 1024);
+  const canvas = await page.evaluate(() => { const r = window.__game.canvas.getBoundingClientRect(); return r.width / r.height; });
+  expect(canvas).toBeCloseTo(4 / 3, 1); // 4:3, not stretched
+  await page.screenshot({ path: 'test-results/rotated.png' });
+});
