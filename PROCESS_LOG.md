@@ -99,3 +99,5 @@ BUILD 9: Catch notes are now random within the pentatonic scale (no repeats, max
 BUILD 10: Celebration reworked per feedback: all 10 fireflies (mixed poses + green/pink variants) float out of the jar, with an animated palette-only rainbow (accent/glow/leaves/jar) that sweeps in, shimmers, fades. Firefly glow shrunk and offset onto the bulb only. AI note: test timed out at default 30s after the longer celebration; raised to 90s. ~15 min.
 
 AUDIO: ambience loop replaced with the user's own track "Firefly Meadow" (3:04, copied unmodified to public/audio/ambience.mp3; synth pad archived). Zero code change thanks to audio.json; game loops it at volume 0.18. ~3 min.
+
+BUG FIX: catch animation vanished — when adding the random-note scale I reused the TUNING key `catchScale` (already the firefly shrink factor), so the shrink became NaN and the firefly disappeared on tap. Renamed to `noteScale`; added a regression check that mid-flight scale is finite. Found by probing tween state in a throwaway test. ~8 min.

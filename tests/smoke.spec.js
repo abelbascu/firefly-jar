@@ -24,7 +24,14 @@ test('tapping a firefly puts it in the jar', async ({ page }) => {
     return { x: r.left + (f.x / 1024) * r.width, y: r.top + (f.y / 768) * r.height };
   });
   await page.mouse.click(pt.x, pt.y);
-  await page.waitForTimeout(2600);
+  await page.waitForTimeout(700);
+  // mid-flight the firefly must still be visible and shrinking (regression: scale was NaN)
+  const mid = await page.evaluate(() => {
+    const s = window.__game.scene.getScene('MainScene');
+    return s.children.list.filter((c) => c.type === 'Container').map((c) => c.scaleX).filter((v) => !(v >= 0.3 && v <= 1));
+  });
+  expect(mid).toEqual([]);
+  await page.waitForTimeout(1900);
   expect(await jarCount(page)).toBe(1);
   await page.screenshot({ path: 'test-results/caught.png' });
 });

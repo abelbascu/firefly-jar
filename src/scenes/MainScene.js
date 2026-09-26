@@ -44,7 +44,7 @@ export default class MainScene extends Phaser.Scene {
 
   // Random but tuneful: pentatonic notes, no repeats, small steps from the last note.
   nextNote() {
-    const scale = TUNING.catchScale;
+    const scale = TUNING.noteScale;
     const ok = scale.map((_, i) => i).filter((i) => i !== this.noteIdx
       && (this.noteIdx < 0 || Math.abs(i - this.noteIdx) <= TUNING.catchMaxLeap));
     this.noteIdx = Phaser.Utils.Array.GetRandom(ok);
@@ -66,7 +66,7 @@ export default class MainScene extends Phaser.Scene {
     const b = new Phaser.Math.Vector2(slot.x, slot.y - 30);
     const curve = new Phaser.Curves.QuadraticBezier(a, c, b);
     const p = new Phaser.Math.Vector2();
-    const startScale = f.box.scale;
+    const startScale = 1;
     this.tweens.addCounter({
       from: 0, to: 1, duration: TUNING.catchMs, ease: 'Sine.easeInOut',
       onUpdate: (tw) => {
