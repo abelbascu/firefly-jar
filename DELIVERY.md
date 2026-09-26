@@ -4,13 +4,13 @@
 
 ## 1. Playable build
 - **Play (hosted, GitHub Pages):** https://abelbascu.github.io/firefly-jar/
-- Works with touch (tablet and Android phone, portrait or landscape) and mouse. Audio starts after the first tap.
+- Works with touch (tablet and Android phone, portrait or landscape, filling the whole screen) and mouse. Audio starts after the first tap.
 - **How it plays:** tap a firefly and it floats into the jar (each tap plays a soft random pentatonic note). Tap empty night and nearby fireflies drift toward you (the added mechanic). Catch all 10 and the jar glows, the whole flock flies out under a rainbow, then 10 new fireflies appear and the jar is empty again. No text, no timers, no fail states.
 - **[YOUR THOUGHTS: how it felt on your phone/tablet; anything you would flag before a reviewer opens it]**
 
 ## 2. Source code
 - **Repo:** https://github.com/abelbascu/firefly-jar (public; `main` deploys automatically)
-- Run locally: `npm install && npm run dev`. Tests: `npx playwright test` (4 tests: boot, tap to jar, full 10-catch round, Android-portrait touch).
+- Run locally: `npm install && npm run dev`. Tests: `npx playwright test` (6 tests: boot, tap to jar, full 10-catch round, Android-portrait touch, both rotation directions).
 - Layout: `src/config.js` (palette and every tuning number), `src/scenes/`, `src/objects/` (Firefly, Jar, Background, Celebration, glow). Sprites and audio load only via `public/sprites/sprites.json` and `public/audio/audio.json`, so an asset can be swapped with no code change.
 - Stack: Phaser 3 (^3.90) + Vite, plain JS.
 
@@ -79,7 +79,7 @@ Taken from the logs; each was caught by a test, a screenshot, or by you listenin
 4. **Empty mp3 files** from failed audio API calls. The script now writes only after a successful response.
 5. **Image models:** the free tier quota was 0 (billing needed); glowing abdomens picked up a magenta fringe from the chroma-key background, and glow should be code anyway. Prompts changed to a semi-transparent bulb, glow drawn in code.
 6. **Audio:** the 0.4 s sound was below the API minimum (0.5 s); the Music API needs a paid plan; and the generated sounds were high-pitched, piercing, with an ugly melody. Replaced by synthesised low, soft, pentatonic sounds; each tap plays a random tuneful note.
-7. **Portrait "sanity" was not real:** the first pass only letterboxed the landscape stage, so on a phone the tap circles were about 40 px, breaking the 96 px rule. Fixed with a portrait stage and circles that scale to at least 100 CSS px, plus an Android-portrait test.
+7. **Portrait "sanity" was not real:** the first pass only letterboxed the landscape stage, so on a phone the tap circles were about 40 px, breaking the 96 px rule. Fixed with a portrait stage and circles that scale to at least 100 CSS px, plus an Android-portrait test. Your real-phone test then found two more problems the emulator missed: the stage did not fill a tall phone screen, and rotating back from landscape to portrait left a tiny frame (phones report stale window sizes right after rotating). Fixed by sizing the stage to the screen's shape and re-checking the orientation after each load.
 8. **A regression I introduced:** reusing the config key `catchScale` for the note list turned the shrink factor into NaN, so caught fireflies just vanished. You spotted it while playing; the cause was found by probing tween state and a regression check was added.
 9. **Design misses:** the first celebration sent up only one firefly; the glow covered the whole body instead of the bulb; the flock respawned on every catch, which undercut "catch the last one". All fixed after your feedback.
 10. **Test details:** the full-round test hit Playwright's 30 s default timeout; the first bush art (overlapping translucent discs) looked muddy, so it became opaque shapes with a night overlay.
