@@ -75,6 +75,7 @@ export default class Firefly {
     const { width, height } = this.body.texture.getSourceImage();
     const w = key.startsWith('firefly_side_flap_') ? TUNING.fireflyWidth : TUNING.idleWidth;
     this.body.setDisplaySize(w, w * (height / width));
+    this.glow.y = this.body.displayHeight * TUNING.bulbOffset;
   }
 
   // Called each frame by the scene.

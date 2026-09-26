@@ -3,6 +3,7 @@ import { GAME, PALETTE, TUNING } from '../config.js';
 import Firefly from '../objects/Firefly.js';
 import Background from '../objects/Background.js';
 import Jar from '../objects/Jar.js';
+import { playFlock, playRainbow } from '../objects/Celebration.js';
 import { ensureGlowTexture } from '../objects/glow.js';
 
 export default class MainScene extends Phaser.Scene {
@@ -107,17 +108,13 @@ export default class MainScene extends Phaser.Scene {
     }).setDepth(12);
     [0, 700, 1400].forEach((d) => this.time.delayedCall(d, () => burst.explode(14)));
 
-    // happy pose floats up out of the jar and fades
-    if (this.textures.exists('firefly_pose_happy')) {
-      const { width, height } = this.textures.get('firefly_pose_happy').getSourceImage();
-      const h = this.add.image(TUNING.jarX, TUNING.jarY - 60, 'firefly_pose_happy').setDepth(13).setAlpha(0)
-        .setDisplaySize(TUNING.fireflyWidth * 1.5, TUNING.fireflyWidth * 1.5 * (height / width));
-      this.tweens.add({ targets: h, alpha: 1, y: TUNING.jarY - 230, duration: 1500, ease: 'Sine.easeOut' });
-      this.tweens.add({ targets: h, alpha: 0, delay: TUNING.celebrateMs - 1200, duration: 1100, ease: 'Sine.easeIn', onComplete: () => h.destroy() });
-    }
+    // the whole flock floats out of the jar, under an animated rainbow
+    playFlock(this, this.jar);
+    const fadeRainbow = playRainbow(this);
 
     // calm reset: fade, never cut
     this.time.delayedCall(TUNING.celebrateMs, () => {
+      fadeRainbow();
       this.jar.reset(TUNING.resetFadeMs, () => {
         this.celebrating = false;
         this.noteIdx = -1;

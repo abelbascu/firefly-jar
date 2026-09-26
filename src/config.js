@@ -20,7 +20,8 @@ export const TUNING = {
   variants: [null], // yellow only
   glowBase: 0.55,
   glowPulseMs: 1800,
-  glowSize: 260, // additive glow display diameter
+  glowSize: 110, // additive glow diameter: only the lightbulb glows
+  bulbOffset: 0.27, // bulb centre below sprite centre, as a fraction of display height
   callRadius: 320, // how far a tap "calls" fireflies (mechanic)
   callDriftMs: 2600,
   // jar
@@ -35,7 +36,7 @@ export const TUNING = {
   catchScale: 0.45,
   respawnFadeMs: 1400,
   // celebration
-  celebrateMs: 3800,
+  celebrateMs: 6200, // flock leaves over ~5s
   resetFadeMs: 1600,
   // ambience
   starCount: 46,

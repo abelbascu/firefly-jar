@@ -95,3 +95,5 @@ AUDIO v3 (user feedback: ElevenLabs sounds too piercing/high, melody ugly): the 
 BUILD 8: Per user feedback, no respawn on catch: round starts with 10 fireflies, catching the last triggers the celebration, then 10 new ones fade in and the jar empties. Test now asserts 10 fireflies after reset. ~5 min.
 
 BUILD 9: Catch notes are now random within the pentatonic scale (no repeats, max 2-step leaps) instead of a fixed do-re-mi run, so any order sounds tuneful. ~3 min.
+
+BUILD 10: Celebration reworked per feedback: all 10 fireflies (mixed poses + green/pink variants) float out of the jar, with an animated palette-only rainbow (accent/glow/leaves/jar) that sweeps in, shimmers, fades. Firefly glow shrunk and offset onto the bulb only. AI note: test timed out at default 30s after the longer celebration; raised to 90s. ~15 min.
