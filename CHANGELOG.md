@@ -42,3 +42,13 @@
 - Not yet picked.
 - Side-view flap frames (facing right; mirror in code for left) generated into `assets/_candidates/firefly_v6_02_poses/side/`:
   `firefly_side_wings_up|mid|down` (3 candidates each). Loop order: up, mid, down, mid.
+
+## 2026-09-26 — Layered side-view flap (replaces per-frame side poses)
+- Problem: frames generated independently made the body jump up/down between frames (bad for ages 4-7).
+- New approach: static body (`firefly_side_body`, wings removed) + one wing sprite (`firefly_side_wing`, left half of a generated wing pair)
+  rotated around a hinge in code with Sine easing. Body never moves; flap range ~ -30deg..+58deg; far wing drawn dimmer/offset behind.
+- Manifest data for the game: `firefly_side_body.hingeX/hingeY` (hinge as a fraction of the body sprite), `firefly_side_wing.originX/originY`
+  (wing sprite origin = hinge). Both wings render BEHIND the body. Face left with flipX.
+- `scripts/side_layers.py preview|install`; preview GIF: `assets/_candidates/firefly_v6_02_poses/side/gifs/layered_flap.gif`.
+- `art.py` cutout: 2px edge erosion (less magenta fringe) and higher trim threshold (a faint speck was inflating the bbox).
+- Next: antenna wiggle (separate antenna layers), then colour variants of the layers.

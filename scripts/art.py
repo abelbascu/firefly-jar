@@ -133,6 +133,9 @@ def chroma_cutout(img):
     edge_labels = set(np.unique(np.concatenate([labels[0], labels[-1], labels[:, 0], labels[:, -1]]))) - {0}
     bgmask = np.isin(labels, list(edge_labels))
     alpha = np.where(bgmask, alpha, 1.0)
+    # shave the contaminated edge ring (bg-tinted pixels), then feather
+    alpha = ndimage.grey_erosion(alpha, size=(5, 5))
+    alpha = np.where(bgmask, alpha, 1.0)
     # ~2px feather on the edge only
     feathered = ndimage.gaussian_filter(alpha, 0.8)
     alpha = np.where(ndimage.binary_dilation(bgmask, iterations=2), feathered, alpha)
@@ -164,7 +167,7 @@ def cutout(img, method="auto"):
 
 
 def trim_pad(img):
-    bbox = img.getchannel("A").point(lambda v: 255 if v > 8 else 0).getbbox()
+    bbox = img.getchannel("A").point(lambda v: 255 if v > 40 else 0).getbbox()
     if bbox:
         img = img.crop(bbox)
     w, h = img.size

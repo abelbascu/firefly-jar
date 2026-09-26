@@ -245,3 +245,42 @@ assets:
       prompt: >
         Exactly the same character as the references (first image: the character; second image: its front-view idle pose): same round navy head, same two ball-tipped antennae, same dot eyes, same pink cheeks, same clay/plush style and proportions, same seated-in-a-glowing-egg look with a semi-transparent shaded glass orb, same layered pastel semi-transparent wings. SIDE VIEW: the firefly flies to the RIGHT, body in profile facing right, head turned to look forward in the direction of travel (both eyes still visible in a soft three-quarter profile), body tilted very slightly forward, the glowing egg orb below and slightly behind, the near wing in front and the far wing partly behind it, little arm relaxed. Wing position: both wings swept low and down below the back line (bottom of the flap cycle).
       out_px: 256
+  firefly_side_body:
+    v1:
+      model: gemini-3.1-flash-image
+      group: firefly_v6_02_poses/side_layers
+      refs: [art/ref/firefly_side_mid.png]
+      style: >
+        Soft 2D-looking clay / plush toy illustration, rounded inflated forms, soft studio lighting,
+        matte smooth materials, no sharp edges, cute and calm, for ages 4-7.
+        Palette strictly: night blue #2B3A67, firefly glow #FFD166, leaf green #7BC47F,
+        pink accent #F4A6B7, cream highlight #FFF4E0.
+        Single centered subject, generous empty margin around it.
+        Plain flat solid pure magenta #FF00FF background, no shadow on the background,
+        no gradient, no text, no border, no glow halo around the subject.
+      prompt: >
+        Edit the reference image: output the exact same character in the exact same pose, size,
+        position and framing, facing right, but with BOTH WINGS COMPLETELY REMOVED (no wings and no
+        wing stumps, just the smooth back). Keep the head, two ball-tipped antennae, eyes, pink cheek,
+        arm and the semi-transparent shaded glass egg orb below exactly identical.
+      out_px: 256
+  firefly_side_wing:
+    v1:
+      model: gemini-3.1-flash-image
+      group: firefly_v6_02_poses/side_layers
+      refs: [art/ref/firefly_side_mid.png]
+      style: >
+        Soft 2D-looking clay / plush toy illustration, rounded inflated forms, soft studio lighting,
+        matte smooth materials, no sharp edges, cute and calm, for ages 4-7.
+        Palette strictly: night blue #2B3A67, firefly glow #FFD166, leaf green #7BC47F,
+        pink accent #F4A6B7, cream highlight #FFF4E0.
+        Single centered subject, generous empty margin around it.
+        Plain flat solid pure magenta #FF00FF background, no shadow on the background,
+        no gradient, no text, no border, no glow halo around the subject.
+      prompt: >
+        Output ONLY ONE single semi-transparent butterfly-like wing, copied from the reference
+        character's near wing (same layered pastel cream and pink concentric lobes, delicate
+        see-through membrane). Isolated on its own: no body, no head, no orb, no other wing.
+        The wing points straight UP with its attachment point (root) at the bottom center of the
+        image, symmetric-ish rounded double-lobed shape, whole wing visible.
+      out_px: 256
