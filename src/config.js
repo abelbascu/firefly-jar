@@ -40,8 +40,9 @@ export const TUNING = {
   // ambience
   starCount: 46,
   ambienceVolume: 0.18,
-  // one soft note per catch (do re mi fa sol la si do'), then a resolving sol -> do'
-  catchMelody: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si', 'do2', 'sol', 'do2'],
+  // each catch plays a random note of the pentatonic scale (never clashes), moving by small steps
+  catchScale: ['do', 're', 'mi', 'sol', 'la', 'do2'],
+  catchMaxLeap: 2,
   idleWidth: 150, // front pose is drawn larger so it matches the side view's size
   jarFillVolume: 0.4,
 };

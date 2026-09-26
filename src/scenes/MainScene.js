@@ -18,7 +18,7 @@ export default class MainScene extends Phaser.Scene {
     if (this.cache.audio.exists('ambience')) this.sound.play('ambience', { loop: true, volume: TUNING.ambienceVolume });
     this.fireflies = [];
     this.celebrating = false;
-    this.tapIndex = 0;
+    this.noteIdx = -1;
     this.spawnAll(false);
 
     this.input.on('gameobjectdown', (_p, obj) => obj.fireflyRef && this.catchFirefly(obj.fireflyRef));
@@ -41,13 +41,21 @@ export default class MainScene extends Phaser.Scene {
     if (this.cache.audio.exists(key)) this.sound.play(key, { volume });
   }
 
+  // Random but tuneful: pentatonic notes, no repeats, small steps from the last note.
+  nextNote() {
+    const scale = TUNING.catchScale;
+    const ok = scale.map((_, i) => i).filter((i) => i !== this.noteIdx
+      && (this.noteIdx < 0 || Math.abs(i - this.noteIdx) <= TUNING.catchMaxLeap));
+    this.noteIdx = Phaser.Utils.Array.GetRandom(ok);
+    return scale[this.noteIdx];
+  }
+
   catchFirefly(f) {
     if (f.caught || this.celebrating) return;
     f.caught = true;
     f.stop();
     f.zone.disableInteractive();
-    // each tap plays the next note of a rising do-re-mi melody
-    const note = TUNING.catchMelody[this.tapIndex++ % TUNING.catchMelody.length];
+    const note = this.nextNote();
     this.sfx(this.cache.audio.exists(`catch_${note}`) ? `catch_${note}` : 'catch', 0.5);
     const jar = this.jar;
     const slot = jar.slot(jar.count);
@@ -112,7 +120,7 @@ export default class MainScene extends Phaser.Scene {
     this.time.delayedCall(TUNING.celebrateMs, () => {
       this.jar.reset(TUNING.resetFadeMs, () => {
         this.celebrating = false;
-        this.tapIndex = 0;
+        this.noteIdx = -1;
         this.spawnAll(true); // a fresh set of fireflies drifts in
         burst.destroy();
       });
