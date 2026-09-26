@@ -28,3 +28,21 @@ test('tapping a firefly puts it in the jar', async ({ page }) => {
   expect(await jarCount(page)).toBe(1);
   await page.screenshot({ path: 'test-results/caught.png' });
 });
+
+test('ten catches celebrate, then the round resets', async ({ page }) => {
+  await page.goto('/firefly-jar/');
+  await page.waitForFunction(() => window.__game?.scene.getScene('MainScene')?.fireflies?.length > 0);
+  for (let i = 0; i < 10; i++) {
+    await page.evaluate(() => {
+      const s = window.__game.scene.getScene('MainScene');
+      s.catchFirefly(s.fireflies.find((f) => !f.caught));
+    });
+    await page.waitForTimeout(1700);
+  }
+  expect(await page.evaluate(() => window.__game.scene.getScene('MainScene').celebrating)).toBe(true);
+  await page.waitForTimeout(1200);
+  await page.screenshot({ path: 'test-results/celebrate.png' });
+  await page.waitForTimeout(6500);
+  expect(await jarCount(page)).toBe(0);
+  expect(await page.evaluate(() => window.__game.scene.getScene('MainScene').celebrating)).toBe(false);
+});

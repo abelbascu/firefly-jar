@@ -29,3 +29,5 @@ ART: picked firefly v6_02 (gemini-3.1-flash-image, 2026-09-26)
 BUILD 1: Firefly.js — Sine-eased wandering legs with hover pauses, flap-frame support (falls back to the single sprite until side frames exist), invisible 112px tap circle, code-drawn additive pulsing glow (glow.js). Smoke test + screenshot OK. ~15 min.
 
 BUILD 2+3: Jar.js (sprite + code glow that brightens 0..10, small glowing orbs rest inside) and catch (bezier curve, scale down, soft sound if audio exists, replacement firefly fades in elsewhere). Test taps a firefly and asserts jar count 1 via window.__game hook. Got wrong: first draft of test would have needed moving-target care; solved by reading live position. ~20 min.
+
+BUILD 4: Celebration at 10 — jar swell, code-drawn additive sparkle particles (old sparkle art not used), happy pose + celebrate sound when those assets exist, calm fade reset. Test drives 10 catches and asserts reset. ~10 min.

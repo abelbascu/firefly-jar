@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { GAME, PALETTE, TUNING } from '../config.js';
 import Firefly from '../objects/Firefly.js';
 import Jar from '../objects/Jar.js';
+import { ensureGlowTexture } from '../objects/glow.js';
 
 export default class MainScene extends Phaser.Scene {
   constructor() {
@@ -65,6 +66,34 @@ export default class MainScene extends Phaser.Scene {
 
   celebrate() {
     this.celebrating = true;
+    this.sfx('celebrate', 0.8);
+    this.jar.swell();
+
+    // soft sparkles, drawn in code: warm additive orbs drifting up and fading
+    const burst = this.add.particles(TUNING.jarX, TUNING.jarY - 40, ensureGlowTexture(this), {
+      emitting: false, lifespan: { min: 1800, max: 2800 },
+      speed: { min: 30, max: 120 }, angle: { min: 200, max: 340 }, gravityY: -12,
+      scale: { start: 0.22, end: 0 }, alpha: { start: 0.9, end: 0, ease: 'Sine.easeIn' },
+      tint: [PALETTE.glow, PALETTE.accent, PALETTE.jar], blendMode: 'ADD',
+    }).setDepth(12);
+    [0, 700, 1400].forEach((d) => this.time.delayedCall(d, () => burst.explode(14)));
+
+    // happy pose floats up out of the jar and fades
+    if (this.textures.exists('firefly_pose_happy')) {
+      const { width, height } = this.textures.get('firefly_pose_happy').getSourceImage();
+      const h = this.add.image(TUNING.jarX, TUNING.jarY - 60, 'firefly_pose_happy').setDepth(13).setAlpha(0)
+        .setDisplaySize(TUNING.fireflyWidth * 1.5, TUNING.fireflyWidth * 1.5 * (height / width));
+      this.tweens.add({ targets: h, alpha: 1, y: TUNING.jarY - 230, duration: 1500, ease: 'Sine.easeOut' });
+      this.tweens.add({ targets: h, alpha: 0, delay: TUNING.celebrateMs - 1200, duration: 1100, ease: 'Sine.easeIn', onComplete: () => h.destroy() });
+    }
+
+    // calm reset: fade, never cut
+    this.time.delayedCall(TUNING.celebrateMs, () => {
+      this.jar.reset(TUNING.resetFadeMs, () => {
+        this.celebrating = false;
+        burst.destroy();
+      });
+    });
   }
 
   update(_t, delta) {
