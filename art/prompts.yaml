@@ -218,3 +218,30 @@ assets:
       prompt: >
         Exactly the same character as the reference image: same round navy head, same two ball-tipped antennae, same dot eyes, same pink cheeks, same seated-in-a-glowing-egg look, same clay/plush style and proportions, same size of head to body. Colour variant: identical pose to a calm hover, but the abdomen is a soft pink #F4A6B7 glow and the wings have a faint pink tint.
       out_px: 256
+  firefly_side_wings_up:
+    v1:
+      model: gemini-3.1-flash-image
+      group: firefly_v6_02_poses/side
+      refs: [art/ref/firefly_v6_02.png, art/ref/firefly_v6_02_idle.png]
+      style: *v6_02_style
+      prompt: >
+        Exactly the same character as the references (first image: the character; second image: its front-view idle pose): same round navy head, same two ball-tipped antennae, same dot eyes, same pink cheeks, same clay/plush style and proportions, same seated-in-a-glowing-egg look with a semi-transparent shaded glass orb, same layered pastel semi-transparent wings. SIDE VIEW: the firefly flies to the RIGHT, body in profile facing right, head turned to look forward in the direction of travel (both eyes still visible in a soft three-quarter profile), body tilted very slightly forward, the glowing egg orb below and slightly behind, the near wing in front and the far wing partly behind it, little arm relaxed. Wing position: both wings raised high up above the back (top of the flap cycle).
+      out_px: 256
+  firefly_side_wings_mid:
+    v1:
+      model: gemini-3.1-flash-image
+      group: firefly_v6_02_poses/side
+      refs: [art/ref/firefly_v6_02.png, art/ref/firefly_v6_02_idle.png]
+      style: *v6_02_style
+      prompt: >
+        Exactly the same character as the references (first image: the character; second image: its front-view idle pose): same round navy head, same two ball-tipped antennae, same dot eyes, same pink cheeks, same clay/plush style and proportions, same seated-in-a-glowing-egg look with a semi-transparent shaded glass orb, same layered pastel semi-transparent wings. SIDE VIEW: the firefly flies to the RIGHT, body in profile facing right, head turned to look forward in the direction of travel (both eyes still visible in a soft three-quarter profile), body tilted very slightly forward, the glowing egg orb below and slightly behind, the near wing in front and the far wing partly behind it, little arm relaxed. Wing position: wings held out level and slightly angled back, halfway through the flap (middle of the flap cycle).
+      out_px: 256
+  firefly_side_wings_down:
+    v1:
+      model: gemini-3.1-flash-image
+      group: firefly_v6_02_poses/side
+      refs: [art/ref/firefly_v6_02.png, art/ref/firefly_v6_02_idle.png]
+      style: *v6_02_style
+      prompt: >
+        Exactly the same character as the references (first image: the character; second image: its front-view idle pose): same round navy head, same two ball-tipped antennae, same dot eyes, same pink cheeks, same clay/plush style and proportions, same seated-in-a-glowing-egg look with a semi-transparent shaded glass orb, same layered pastel semi-transparent wings. SIDE VIEW: the firefly flies to the RIGHT, body in profile facing right, head turned to look forward in the direction of travel (both eyes still visible in a soft three-quarter profile), body tilted very slightly forward, the glowing egg orb below and slightly behind, the near wing in front and the far wing partly behind it, little arm relaxed. Wing position: both wings swept low and down below the back line (bottom of the flap cycle).
+      out_px: 256

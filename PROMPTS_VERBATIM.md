@@ -112,3 +112,13 @@ and the iluminatting bottom should be ready to have shades and semitransparency 
 ```
 i like the idea thet can be inferred that the light bulb at the bottom is like an egg where the firefly is seated
 ```
+
+### 2026-09-26 12:29 — Claude Code
+```
+looks cool, but the origianl references have the firefly moving sideways, i like what we have when the firefly is iddle and looks towards the player, but when moving, we need sideways poses and its animation frames
+```
+
+### 2026-09-26 12:32 — Claude Code
+```
+we have until 14.38 to finish the assignment, tell me a prompt for another agent to keep working on other parts of the game to move faster
+```

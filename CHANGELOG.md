@@ -40,3 +40,5 @@
 - Pose set generated into `assets/_candidates/firefly_v6_02_poses/`: idle, wings_up, wings_down, happy, sleepy + green/pink colour variants (2 candidates each; `_overview.png` shows all).
 - Design decisions from feedback: wings are semi-transparent; the glowing part is a translucent, shaded egg/bulb-like orb the firefly sits in (so glow can be layered in code).
 - Not yet picked.
+- Side-view flap frames (facing right; mirror in code for left) generated into `assets/_candidates/firefly_v6_02_poses/side/`:
+  `firefly_side_wings_up|mid|down` (3 candidates each). Loop order: up, mid, down, mid.
