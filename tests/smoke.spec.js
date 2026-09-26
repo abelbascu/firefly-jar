@@ -86,14 +86,25 @@ test.describe('Android phone, portrait, touch', () => {
   });
 });
 
-test('rotating a phone to landscape rebuilds the stage in landscape', async ({ page }) => {
+test('rotating a phone to landscape fills the screen in landscape', async ({ page }) => {
   await page.setViewportSize({ width: 393, height: 851 });
   await page.goto('/firefly-jar/');
   await page.waitForFunction(() => window.__game?.scene.getScene('MainScene')?.fireflies?.length > 0);
-  expect(await page.evaluate(() => window.__game.scale.gameSize.height)).toBe(1024);
+  expect(await page.evaluate(() => window.__game.scale.gameSize.height)).toBeGreaterThan(1024);
   await page.setViewportSize({ width: 851, height: 393 });
-  await page.waitForFunction(() => window.__game?.scene.getScene('MainScene')?.fireflies?.length > 0 && window.__game.scale.gameSize.width === 1024);
+  await page.waitForFunction(() => window.__game?.scene.getScene('MainScene')?.fireflies?.length > 0 && window.__game.scale.gameSize.width > 1024);
   const canvas = await page.evaluate(() => { const r = window.__game.canvas.getBoundingClientRect(); return r.width / r.height; });
-  expect(canvas).toBeCloseTo(4 / 3, 1); // 4:3, not stretched
+  expect(canvas).toBeCloseTo(851 / 393, 1); // canvas fills the screen shape, no stretching
   await page.screenshot({ path: 'test-results/rotated.png' });
+});
+
+test('rotating landscape -> portrait fills the screen again (no tiny frame)', async ({ page }) => {
+  await page.setViewportSize({ width: 851, height: 393 });
+  await page.goto('/firefly-jar/');
+  await page.waitForFunction(() => window.__game?.scene.getScene('MainScene')?.fireflies?.length > 0);
+  await page.setViewportSize({ width: 393, height: 851 });
+  await page.waitForFunction(() => window.__game?.scene.getScene('MainScene')?.fireflies?.length > 0 && window.__game.scale.gameSize.height > window.__game.scale.gameSize.width);
+  const r = await page.evaluate(() => { const c = window.__game.canvas.getBoundingClientRect(); return { w: c.width, h: c.height }; });
+  expect(r.w).toBeGreaterThan(380);
+  expect(r.h).toBeGreaterThan(830);
 });

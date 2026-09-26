@@ -6,9 +6,15 @@ export const PALETTE = {
   jar: 0xfff4e0,
 };
 
-// Stage size is chosen once at boot: 1024x768 landscape (iPad), 768x1024 on portrait phones/tablets.
-export const PORTRAIT = typeof window !== 'undefined' && window.innerHeight > window.innerWidth;
-export const GAME = PORTRAIT ? { width: 768, height: 1024 } : { width: 1024, height: 768 };
+// Stage size is chosen once at boot from the screen's own aspect ratio, so FIT fills the whole screen without
+// stretching: the short side is 768 game px, the long side grows (1024..1800) to match the device.
+const vw = typeof window !== 'undefined' ? window.innerWidth : 1024;
+const vh = typeof window !== 'undefined' ? window.innerHeight : 768;
+export const PORTRAIT = vh > vw;
+const clampLong = (v) => Math.min(1800, Math.max(1024, Math.round(v)));
+export const GAME = PORTRAIT
+  ? { width: 768, height: clampLong((768 * vh) / vw) }
+  : { width: clampLong((768 * vw) / vh), height: 768 };
 
 export const TUNING = {
   // fireflies
@@ -42,7 +48,7 @@ export const TUNING = {
   celebrateMs: 6200, // flock leaves over ~5s
   resetFadeMs: 1600,
   // ambience
-  starCount: 46,
+  starCount: Math.round((46 * GAME.width * GAME.height) / (1024 * 768)),
   ambienceVolume: 0.18,
   // each catch plays a random note of the pentatonic scale (never clashes), moving by small steps
   noteScale: ['do', 're', 'mi', 'sol', 'la', 'do2'],
