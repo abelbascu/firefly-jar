@@ -61,3 +61,33 @@ AUDIO: picked ambience v2_01 (elevenlabs sfx, 2026-09-26)
 AUDIO: generated catch, jar_fill, celebrate, tap_miss, ambience with a warmer/softer style block. Mistakes: tap_miss v1 was 0.4s (API minimum 0.5s) -> added v2; Music API needs a paid plan -> ambience v2 uses the sfx endpoint (20s) and the game loops it at volume 0.25. Picks are unaudited defaults, to be swapped by ear. ~10 min.
 
 BUILD 7: Wired the art agent's 12 baked side flap frames (70ms/frame, flipX by direction) and the green/pink front variants into Firefly. AI note: earlier code expected up/mid/down keys that were replaced by flap_00..11; fixed from docs/ASSETS.md. ~8 min.
+
+AUDIO: picked catch v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked jar_fill v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked celebrate v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked tap_miss v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked ambience v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked catch_do v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked catch_re v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked catch_mi v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked catch_fa v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked catch_sol v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked catch_la v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked catch_si v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked catch_do2 v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO: picked jar_fill v3_01 (elevenlabs synth, 2026-09-26)
+
+AUDIO v3 (user feedback: ElevenLabs sounds too piercing/high, melody ugly): the AI could not steer the API toward low, tuneful sounds, so wrote scripts/synth_sfx.py (soft low sine tones, pentatonic/major scale, lowpass, echo, no highs) as a 'synth' version v3 in the same candidates/pick pipeline. Each tap now plays the next note of a rising do-re-mi-fa-sol-la-si-do' melody (catch_<note> keys); jar_fill is a low soft swell; ambience is a seamless quiet pad. Also removed colour variants (yellow only) and enlarged the hovering front pose (idleWidth) to match the side view. ~25 min.

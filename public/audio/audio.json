@@ -1,36 +1,92 @@
 {
   "catch": {
     "file": "catch.mp3",
-    "version": "v1_03",
-    "source": "elevenlabs-sfx",
+    "version": "v3_01",
+    "source": "synth",
     "date": "2026-09-26",
     "loop": false
   },
   "jar_fill": {
     "file": "jar_fill.mp3",
-    "version": "v1_01",
-    "source": "elevenlabs-sfx",
+    "version": "v3_01",
+    "source": "synth",
     "date": "2026-09-26",
     "loop": false
   },
   "celebrate": {
     "file": "celebrate.mp3",
-    "version": "v1_01",
-    "source": "elevenlabs-sfx",
+    "version": "v3_01",
+    "source": "synth",
     "date": "2026-09-26",
     "loop": false
   },
   "tap_miss": {
     "file": "tap_miss.mp3",
-    "version": "v2_01",
-    "source": "elevenlabs-sfx",
+    "version": "v3_01",
+    "source": "synth",
     "date": "2026-09-26",
     "loop": false
   },
   "ambience": {
     "file": "ambience.mp3",
-    "version": "v2_01",
-    "source": "elevenlabs-sfx",
+    "version": "v3_01",
+    "source": "synth",
+    "date": "2026-09-26",
+    "loop": true
+  },
+  "catch_do": {
+    "file": "catch_do.mp3",
+    "version": "v3_01",
+    "source": "synth",
+    "date": "2026-09-26",
+    "loop": false
+  },
+  "catch_re": {
+    "file": "catch_re.mp3",
+    "version": "v3_01",
+    "source": "synth",
+    "date": "2026-09-26",
+    "loop": false
+  },
+  "catch_mi": {
+    "file": "catch_mi.mp3",
+    "version": "v3_01",
+    "source": "synth",
+    "date": "2026-09-26",
+    "loop": false
+  },
+  "catch_fa": {
+    "file": "catch_fa.mp3",
+    "version": "v3_01",
+    "source": "synth",
+    "date": "2026-09-26",
+    "loop": false
+  },
+  "catch_sol": {
+    "file": "catch_sol.mp3",
+    "version": "v3_01",
+    "source": "synth",
+    "date": "2026-09-26",
+    "loop": false
+  },
+  "catch_la": {
+    "file": "catch_la.mp3",
+    "version": "v3_01",
+    "source": "synth",
+    "date": "2026-09-26",
+    "loop": false
+  },
+  "catch_si": {
+    "file": "catch_si.mp3",
+    "version": "v3_01",
+    "source": "synth",
+    "date": "2026-09-26",
+    "loop": false
+  },
+  "catch_do2": {
+    "file": "catch_do2.mp3",
+    "version": "v3_01",
+    "source": "synth",
     "date": "2026-09-26",
     "loop": false
   }

@@ -7,13 +7,34 @@ style: >
 sounds:
   catch:
     v1: { type: sfx, seconds: 0.8, prompt: "a single soft glass chime twinkle, like a firefly landing in a glass jar" }
+    v3: { type: synth, norm: false, seconds: 0, prompt: "synthesised by scripts/synth_sfx.py: two soft low chime notes G4-C5, low and warm, no highs" }
   jar_fill:
     v1: { type: sfx, seconds: 1.0, prompt: "soft rising magical shimmer, one gentle sparkle" }
+    v3: { type: synth, norm: false, seconds: 0, prompt: "synthesised by scripts/synth_sfx.py: low soft warm swell (replaces the higher arpeggio), low and warm, no highs" }
   celebrate:
     v1: { type: sfx, seconds: 3.0, prompt: "happy gentle celebration jingle, music box and soft bells, short and joyful" }
+    v3: { type: synth, norm: false, seconds: 0, prompt: "synthesised by scripts/synth_sfx.py: gentle pentatonic lullaby phrase ending on a soft C chord, low and warm, no highs" }
   tap_miss:
     v1: { type: sfx, seconds: 0.4, prompt: "very soft muted bubble pop, barely there" }
     v2: { type: sfx, seconds: 0.5, prompt: "very soft warm muted bubble pop, tiny and gentle, barely there" }
+    v3: { type: synth, norm: false, seconds: 0, prompt: "synthesised by scripts/synth_sfx.py: tiny low soft pop, low and warm, no highs" }
+  catch_do:
+    v3: { type: synth, norm: false, seconds: 0, prompt: "synthesised by scripts/synth_sfx.py: soft warm note do of the C major scale" }
+  catch_re:
+    v3: { type: synth, norm: false, seconds: 0, prompt: "synthesised by scripts/synth_sfx.py: soft warm note re of the C major scale" }
+  catch_mi:
+    v3: { type: synth, norm: false, seconds: 0, prompt: "synthesised by scripts/synth_sfx.py: soft warm note mi of the C major scale" }
+  catch_fa:
+    v3: { type: synth, norm: false, seconds: 0, prompt: "synthesised by scripts/synth_sfx.py: soft warm note fa of the C major scale" }
+  catch_sol:
+    v3: { type: synth, norm: false, seconds: 0, prompt: "synthesised by scripts/synth_sfx.py: soft warm note sol of the C major scale" }
+  catch_la:
+    v3: { type: synth, norm: false, seconds: 0, prompt: "synthesised by scripts/synth_sfx.py: soft warm note la of the C major scale" }
+  catch_si:
+    v3: { type: synth, norm: false, seconds: 0, prompt: "synthesised by scripts/synth_sfx.py: soft warm note si of the C major scale" }
+  catch_do2:
+    v3: { type: synth, norm: false, seconds: 0, prompt: "synthesised by scripts/synth_sfx.py: soft warm note do2 of the C major scale" }
   ambience:
     v1: { type: music, seconds: 60, prompt: "calm lullaby night garden loop, soft music box and gentle crickets, slow tempo, seamless loop" }
     v2: { type: sfx, seconds: 20, prompt: "very quiet warm night garden ambience, soft distant crickets and a faint gentle music box lullaby, calm, steady and seamless, nothing sudden" }
+    v3: { type: synth, norm: false, seconds: 24, prompt: "synthesised by scripts/synth_sfx.py: very quiet warm pad C-G-E with sparse pentatonic notes, seamless 24s loop" }

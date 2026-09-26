@@ -73,7 +73,8 @@ export default class Firefly {
   setTex(key) {
     if (this.body.texture.key !== key) this.body.setTexture(key);
     const { width, height } = this.body.texture.getSourceImage();
-    this.body.setDisplaySize(TUNING.fireflyWidth, TUNING.fireflyWidth * (height / width));
+    const w = key.startsWith('firefly_side_flap_') ? TUNING.fireflyWidth : TUNING.idleWidth;
+    this.body.setDisplaySize(w, w * (height / width));
   }
 
   // Called each frame by the scene.

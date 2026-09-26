@@ -18,6 +18,7 @@ export default class MainScene extends Phaser.Scene {
     if (this.cache.audio.exists('ambience')) this.sound.play('ambience', { loop: true, volume: TUNING.ambienceVolume });
     this.fireflies = [];
     this.celebrating = false;
+    this.tapIndex = 0;
     for (let i = 0; i < TUNING.fireflyCount; i++) this.spawnFirefly(false, TUNING.variants[i % TUNING.variants.length]);
 
     this.input.on('gameobjectdown', (_p, obj) => obj.fireflyRef && this.catchFirefly(obj.fireflyRef));
@@ -41,7 +42,9 @@ export default class MainScene extends Phaser.Scene {
     f.caught = true;
     f.stop();
     f.zone.disableInteractive();
-    this.sfx('catch');
+    // each tap plays the next note of a rising do-re-mi melody
+    const note = TUNING.catchMelody[this.tapIndex++ % TUNING.catchMelody.length];
+    this.sfx(this.cache.audio.exists(`catch_${note}`) ? `catch_${note}` : 'catch', 0.5);
     const jar = this.jar;
     const slot = jar.slot(jar.count);
     // curved path: quadratic bezier, control point above-between
@@ -63,7 +66,7 @@ export default class MainScene extends Phaser.Scene {
         this.fireflies.splice(this.fireflies.indexOf(f), 1);
         f.destroy();
         jar.add();
-        this.sfx('jar_fill');
+        this.sfx('jar_fill', TUNING.jarFillVolume);
         this.spawnFirefly(true, f.variant); // nothing is ever lost: a new one drifts in
         if (jar.count >= TUNING.jarTarget) this.celebrate();
       },
@@ -106,6 +109,7 @@ export default class MainScene extends Phaser.Scene {
     this.time.delayedCall(TUNING.celebrateMs, () => {
       this.jar.reset(TUNING.resetFadeMs, () => {
         this.celebrating = false;
+        this.tapIndex = 0;
         burst.destroy();
       });
     });

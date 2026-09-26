@@ -56,10 +56,13 @@ def cmd_gen(a):
         print("saved", path.relative_to(ROOT))
 
 
-def ffmpeg_process(src, dst, lufs, is_music):
+def ffmpeg_process(src, dst, lufs, is_music, norm=True):
     if not shutil.which("ffmpeg"):
         print("ffmpeg not found; copying unprocessed")
         shutil.copy(src, dst)
+        return
+    if not norm:  # synthesised sounds are already level-controlled
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(src), "-c:a", "libmp3lame", "-q:a", "3", str(dst)], check=True)
         return
     dur = float(subprocess.check_output(
         ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(src)]).strip())
@@ -82,10 +85,10 @@ def cmd_pick(a):
     if dest.exists():
         ARCHIVE.mkdir(parents=True, exist_ok=True)
         shutil.move(str(dest), ARCHIVE / f"{a.key}_{datetime.datetime.now():%Y%m%d-%H%M%S}.mp3")
-    ffmpeg_process(src, dest, -24 if is_music else -18, is_music)
+    ffmpeg_process(src, dest, -24 if is_music else -18, is_music, cfg.get("norm", True))
     m = json.loads(MANIFEST.read_text(encoding="utf-8")) if MANIFEST.exists() else {}
-    m[a.key] = {"file": dest.name, "version": tag, "source": f"elevenlabs-{cfg['type']}",
-                "date": datetime.date.today().isoformat(), "loop": is_music}
+    m[a.key] = {"file": dest.name, "version": tag, "source": "synth" if cfg["type"] == "synth" else f"elevenlabs-{cfg['type']}",
+                "date": datetime.date.today().isoformat(), "loop": is_music or a.key == "ambience"}
     MANIFEST.write_text(json.dumps(m, indent=2), encoding="utf-8")
     with LOG.open("a", encoding="utf-8") as f:
         f.write(f"\nAUDIO: picked {a.key} {tag} (elevenlabs {cfg['type']}, {datetime.date.today()})\n")

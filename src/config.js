@@ -17,7 +17,7 @@ export const TUNING = {
   moveMs: [2600, 5200], // duration of one eased leg
   hoverMs: [500, 1600], // pause between legs (front-idle pose)
   flapFrameMs: 70, // 12 baked side frames, looped
-  variants: [null, null, 'firefly_alt_green', null, null, 'firefly_alt_pink', null],
+  variants: [null], // yellow only
   glowBase: 0.55,
   glowPulseMs: 1800,
   glowSize: 260, // additive glow display diameter
@@ -39,5 +39,9 @@ export const TUNING = {
   resetFadeMs: 1600,
   // ambience
   starCount: 46,
-  ambienceVolume: 0.25,
+  ambienceVolume: 0.18,
+  // one soft note per catch (do re mi fa sol la si do'), then a resolving sol -> do'
+  catchMelody: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si', 'do2', 'sol', 'do2'],
+  idleWidth: 150, // front pose is drawn larger so it matches the side view's size
+  jarFillVolume: 0.4,
 };
