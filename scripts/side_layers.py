@@ -7,6 +7,8 @@ The game does the same in Phaser: wing sprite with origin (originX, originY) = h
 import argparse
 import json
 import math
+
+import numpy as np
 import sys
 from pathlib import Path
 
@@ -30,63 +32,110 @@ def load_wing(n):
     return img.crop((0, 0, img.width // 2, img.height))  # left half: points up-left / down-left
 
 
-def paste_wing(canvas, wing, hinge_xy, angle, alpha=1.0, scale=1.0):
-    w = wing.resize((max(1, int(wing.width * scale)), max(1, int(wing.height * scale))), Image.LANCZOS)
-    hx, hy = HINGE_ON_WING[0] * w.width, HINGE_ON_WING[1] * w.height
-    pad = int(max(w.size) * 1.2)
-    big = Image.new("RGBA", (w.width + 2 * pad, w.height + 2 * pad), (0, 0, 0, 0))
-    big.paste(w, (pad, pad))
-    rot = big.rotate(angle, resample=Image.BICUBIC, center=(pad + hx, pad + hy))
+def _homography(src, dst):
+    """3x3 H with dst ~ H @ src for 4 point pairs; returns PIL PERSPECTIVE coeffs mapping dst -> src."""
+    A, b = [], []
+    for (x, y), (u, v) in zip(dst, src):  # solve for inverse map (output -> source)
+        A.append([x, y, 1, 0, 0, 0, -u * x, -u * y]); b.append(u)
+        A.append([0, 0, 0, x, y, 1, -v * x, -v * y]); b.append(v)
+    return np.linalg.solve(np.array(A, float), np.array(b, float))
+
+
+AXIS = np.array([-0.25, -1.0, 0.0])  # body axis (up and slightly back); wings flap about it
+AXIS = AXIS / np.linalg.norm(AXIS)
+
+
+def warp_wing(canvas_size, wing, hinge_xy, theta, phi, scale=1.0, alpha=1.0):
+    """3D flap: rotate the wing plane by `theta` (deg) in DEPTH about the body axis, then swing it by `phi`
+    (deg, +down) in the image plane, and project with perspective. Returns an RGBA layer of canvas_size."""
+    w, h = wing.size
+    hx, hy = HINGE_ON_WING[0] * w, HINGE_ON_WING[1] * h
+    pts = np.array([(0, 0, 0), (w, 0, 0), (w, h, 0), (0, h, 0)], float) - [hx, hy, 0]
+    pts *= scale
+    t = math.radians(theta)
+    K = np.array([[0, -AXIS[2], AXIS[1]], [AXIS[2], 0, -AXIS[0]], [-AXIS[1], AXIS[0], 0]])
+    R = np.eye(3) + math.sin(t) * K + (1 - math.cos(t)) * (K @ K)  # Rodrigues
+    a = math.radians(phi)
+    Rp = np.array([[math.cos(a), -math.sin(a), 0], [math.sin(a), math.cos(a), 0], [0, 0, 1]])
+    D = 2.4 * max(w, h) * scale
+    out = []
+    for p in pts:
+        q = Rp @ (R @ p)
+        f = D / (D - q[2])
+        out.append((hinge_xy[0] + q[0] * f, hinge_xy[1] + q[1] * f))
+    src = [(0, 0), (w, 0), (w, h), (0, h)]
+    coeffs = _homography(src, out)
+    layer = wing.transform(canvas_size, Image.PERSPECTIVE, tuple(coeffs), Image.BICUBIC)
     if alpha < 1:
-        r, g, b, a = rot.split()
-        rot = Image.merge("RGBA", (r, g, b, a.point(lambda v: int(v * alpha))))
-    canvas.alpha_composite(rot, (int(hinge_xy[0] - pad - hx), int(hinge_xy[1] - pad - hy)))
+        r, g, b, al = layer.split()
+        layer = Image.merge("RGBA", (r, g, b, al.point(lambda v: int(v * alpha))))
+    return layer
 
 
-# wing angles (PIL: counter-clockwise +). Up ~ -45 deg (toward vertical), down ~ +55 (folded down/back).
-FRAMES = {"up": -30, "mid": 12, "down": 58}
+# per-wing flap: independent phase/amplitude. phi: + is DOWN. theta: + is toward the viewer.
+def wing_pose(t, near=True):
+    c = 2 * math.pi * t
+    if near:
+        return dict(phi=8 + 42 * math.sin(c), theta=-35 * math.sin(c + 0.9) + 12)
+    return dict(phi=14 + 34 * math.sin(c - 1.3), theta=32 * math.sin(c - 0.4) - 30)
 
 
-def compose(body, wing, hxy, angle, far_lag=8):
+def compose(body, wing, hxy, t, **_):
     S = 1.6
     W, H = int(body.width * S), int(body.height * S)
     M = int(H * 0.8)
-    canvas = Image.new("RGBA", (W + 2 * M, H + 2 * M), (0, 0, 0, 0))
-    ox, oy = M, M
+    size = (W + 2 * M, H + 2 * M)
     b = body.resize((W, H), Image.LANCZOS)
-    hinge = (ox + hxy[0] * W, oy + hxy[1] * H)
+    hinge = (M + hxy[0] * W, M + hxy[1] * H)
     ws = H * 0.5 / wing.height
-    # both wings sit BEHIND the body so the hinge / cut edge is hidden by the torso
-    paste_wing(canvas, wing, (hinge[0] - 8, hinge[1] - 6), angle + far_lag, alpha=0.6, scale=ws * 0.92)  # far wing
-    paste_wing(canvas, wing, hinge, angle, alpha=0.9, scale=ws)  # near wing
-    canvas.alpha_composite(b, (ox, oy))
+    canvas = Image.new("RGBA", size, (0, 0, 0, 0))
+    far = warp_wing(size, wing, (hinge[0] - 10, hinge[1] - 14), scale=ws * 0.9, alpha=0.55, **wing_pose(t, False))
+    near = warp_wing(size, wing, hinge, scale=ws, alpha=0.9, **wing_pose(t, True))
+    canvas.alpha_composite(far)
+    canvas.alpha_composite(near)
+    canvas.alpha_composite(b, (M, M))  # both wings behind the body: hides hinge / cut edge
     return canvas
 
 
 def preview(a):
     body, wing = load_body(a.body), load_wing(a.wing)
-    frames = {k: compose(body, wing, (a.hx, a.hy), ang) for k, ang in FRAMES.items()}
-    box = frames["mid"].getbbox()
-    for f in frames.values():
-        b2 = f.getbbox(); box = (min(box[0], b2[0]), min(box[1], b2[1]), max(box[2], b2[2]), max(box[3], b2[3]))
-    frames = {k: f.crop(box) for k, f in frames.items()}
-    size = frames["mid"].size
-    strip = Image.new("RGB", (size[0] * 3, size[1]), art.NAVY)
-    for i, k in enumerate(("up", "mid", "down")):
-        strip.paste(frames[k], (i * size[0], 0), frames[k])
+    ts = [i / 24 for i in range(24)]
+    fr = [compose(body, wing, (a.hx, a.hy), t) for t in ts]
+    box = fr[0].getbbox()
+    for f in fr:
+        b2 = f.getbbox()
+        box = (min(box[0], b2[0]), min(box[1], b2[1]), max(box[2], b2[2]), max(box[3], b2[3]))
+    fr = [f.crop(box) for f in fr]
     OUT.mkdir(parents=True, exist_ok=True)
+    pick = [fr[i] for i in (0, 4, 8, 12, 16, 20)]
+    strip = Image.new("RGB", (pick[0].width * 3, pick[0].height * 2), art.NAVY)
+    for i, f in enumerate(pick):
+        strip.paste(f, ((i % 3) * f.width, (i // 3) * f.height), f)
     strip.save(OUT / "layered_strip.png")
-    # smooth sine loop for the gif
     seq = []
-    for i in range(24):
-        t = 0.5 - 0.5 * math.cos(2 * math.pi * i / 24)  # 0..1..0
-        ang = FRAMES["up"] + (FRAMES["down"] - FRAMES["up"]) * t
-        f = compose(body, wing, (a.hx, a.hy), ang).crop(box)
-        bg = Image.new("RGB", size, art.NAVY)
+    for f in fr:
+        bg = Image.new("RGB", f.size, art.NAVY)
         bg.paste(f, (0, 0), f)
         seq.append(bg)
-    seq[0].save(OUT / "layered_flap.gif", save_all=True, append_images=seq[1:], duration=70, loop=0)
+    seq[0].save(OUT / "layered_flap.gif", save_all=True, append_images=seq[1:], duration=60, loop=0)
     print("wrote", OUT / "layered_strip.png", OUT / "layered_flap.gif")
+
+
+def frames(a, n=12, px=400):
+    """Bake the flap into n identical-size transparent frames: sprite keys firefly_side_flap_00..NN (facing right)."""
+    body, wing = load_body(a.body), load_wing(a.wing)
+    fr = [compose(body, wing, (a.hx, a.hy), i / n) for i in range(n)]
+    box = fr[0].getbbox()
+    for f in fr:
+        b2 = f.getbbox()
+        box = (min(box[0], b2[0]), min(box[1], b2[1]), max(box[2], b2[2]), max(box[3], b2[3]))
+    for i, f in enumerate(fr):
+        art.install_sprite(f"firefly_side_flap_{i:02d}", f.crop(box), px, "v1_baked", "layered-3d-flap", skip_cutout=True)
+    m = art.read_manifest()
+    m["firefly_side_flap_00"]["frames"] = n
+    m["firefly_side_flap_00"]["note"] = "12-frame loop, facing right, identical size/anchor; play ~70ms/frame, flipX for left"
+    art.write_manifest(m)
+    print(f"installed {n} frames firefly_side_flap_00..{n - 1:02d}")
 
 
 def install(a):
@@ -105,10 +154,10 @@ def install(a):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("cmd", choices=["preview", "install"])
+    p.add_argument("cmd", choices=["preview", "install", "frames"])
     p.add_argument("--body", type=int, default=2)
     p.add_argument("--wing", type=int, default=2)
     p.add_argument("--hx", type=float, default=0.27)
     p.add_argument("--hy", type=float, default=0.57)
     a = p.parse_args()
-    {"preview": preview, "install": install}[a.cmd](a)
+    {"preview": preview, "install": install, "frames": frames}[a.cmd](a)

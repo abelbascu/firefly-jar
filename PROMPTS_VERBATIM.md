@@ -198,3 +198,18 @@ i-m preparing the firefly assets meanwhile keep working
 ```
 also the wings flapping must be more noticeable, now the wings are always extended in the 3 frames
 ```
+
+### 2026-09-26 12:50 — Claude Code
+```
+the flapping wing animation is horrible, you just got a central point and rotated both winds in a down semicircle... bot wings need to flap independently, at least the previous gifs had a sense of perspective, redo the flapping
+```
+
+### 2026-09-26 12:52 — Claude Code
+```
+here what you did j
+```
+
+### 2026-09-26 12:56 — Claude Code
+```
+not the best result yet, but keep it so we can move on, we-ll to the polish at the end
+```

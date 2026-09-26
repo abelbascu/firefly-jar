@@ -51,5 +51,91 @@
     "date": "2026-09-26",
     "originX": 1.0,
     "originY": 0.93
+  },
+  "firefly_side_flap_00": {
+    "file": "firefly_side_flap_00.png",
+    "file2x": "firefly_side_flap_00@2x.png",
+    "version": "v1_baked",
+    "source": "layered-3d-flap",
+    "date": "2026-09-26",
+    "frames": 12,
+    "note": "12-frame loop, facing right, identical size/anchor; play ~70ms/frame, flipX for left"
+  },
+  "firefly_side_flap_01": {
+    "file": "firefly_side_flap_01.png",
+    "file2x": "firefly_side_flap_01@2x.png",
+    "version": "v1_baked",
+    "source": "layered-3d-flap",
+    "date": "2026-09-26"
+  },
+  "firefly_side_flap_02": {
+    "file": "firefly_side_flap_02.png",
+    "file2x": "firefly_side_flap_02@2x.png",
+    "version": "v1_baked",
+    "source": "layered-3d-flap",
+    "date": "2026-09-26"
+  },
+  "firefly_side_flap_03": {
+    "file": "firefly_side_flap_03.png",
+    "file2x": "firefly_side_flap_03@2x.png",
+    "version": "v1_baked",
+    "source": "layered-3d-flap",
+    "date": "2026-09-26"
+  },
+  "firefly_side_flap_04": {
+    "file": "firefly_side_flap_04.png",
+    "file2x": "firefly_side_flap_04@2x.png",
+    "version": "v1_baked",
+    "source": "layered-3d-flap",
+    "date": "2026-09-26"
+  },
+  "firefly_side_flap_05": {
+    "file": "firefly_side_flap_05.png",
+    "file2x": "firefly_side_flap_05@2x.png",
+    "version": "v1_baked",
+    "source": "layered-3d-flap",
+    "date": "2026-09-26"
+  },
+  "firefly_side_flap_06": {
+    "file": "firefly_side_flap_06.png",
+    "file2x": "firefly_side_flap_06@2x.png",
+    "version": "v1_baked",
+    "source": "layered-3d-flap",
+    "date": "2026-09-26"
+  },
+  "firefly_side_flap_07": {
+    "file": "firefly_side_flap_07.png",
+    "file2x": "firefly_side_flap_07@2x.png",
+    "version": "v1_baked",
+    "source": "layered-3d-flap",
+    "date": "2026-09-26"
+  },
+  "firefly_side_flap_08": {
+    "file": "firefly_side_flap_08.png",
+    "file2x": "firefly_side_flap_08@2x.png",
+    "version": "v1_baked",
+    "source": "layered-3d-flap",
+    "date": "2026-09-26"
+  },
+  "firefly_side_flap_09": {
+    "file": "firefly_side_flap_09.png",
+    "file2x": "firefly_side_flap_09@2x.png",
+    "version": "v1_baked",
+    "source": "layered-3d-flap",
+    "date": "2026-09-26"
+  },
+  "firefly_side_flap_10": {
+    "file": "firefly_side_flap_10.png",
+    "file2x": "firefly_side_flap_10@2x.png",
+    "version": "v1_baked",
+    "source": "layered-3d-flap",
+    "date": "2026-09-26"
+  },
+  "firefly_side_flap_11": {
+    "file": "firefly_side_flap_11.png",
+    "file2x": "firefly_side_flap_11@2x.png",
+    "version": "v1_baked",
+    "source": "layered-3d-flap",
+    "date": "2026-09-26"
   }
 }

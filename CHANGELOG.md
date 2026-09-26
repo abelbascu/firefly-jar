@@ -52,3 +52,8 @@
 - `scripts/side_layers.py preview|install`; preview GIF: `assets/_candidates/firefly_v6_02_poses/side/gifs/layered_flap.gif`.
 - `art.py` cutout: 2px edge erosion (less magenta fringe) and higher trim threshold (a faint speck was inflating the bbox).
 - Next: antenna wiggle (separate antenna layers), then colour variants of the layers.
+
+## 2026-09-26 — Flap v2 (3D-ish, independent wings) kept for now
+- Wings now flap independently: each is a textured plane rotated in depth about the body axis + swung in-plane, perspective-projected; near/far wing have different phase/amplitude. Body static.
+- Accepted as "good enough for now"; polish at the end (ideas: real generated near/far wing frames with painted perspective, more natural wing shape, antenna wiggle).
+- Baked into game-ready frames: sprite keys `firefly_side_flap_00`..`_11` (facing right, identical size/anchor, 12-frame loop ~70ms/frame, flipX for left). Regenerate with `python scripts/side_layers.py frames`.

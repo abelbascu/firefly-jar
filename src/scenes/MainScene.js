@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { GAME, PALETTE, TUNING } from '../config.js';
 import Firefly from '../objects/Firefly.js';
+import Background from '../objects/Background.js';
 import Jar from '../objects/Jar.js';
 import { ensureGlowTexture } from '../objects/glow.js';
 
@@ -11,12 +12,15 @@ export default class MainScene extends Phaser.Scene {
 
   create() {
     this.add.rectangle(GAME.width / 2, GAME.height / 2, GAME.width, GAME.height, PALETTE.night);
+    new Background(this);
     this.jar = new Jar(this);
     this.fireflies = [];
     this.celebrating = false;
     for (let i = 0; i < TUNING.fireflyCount; i++) this.spawnFirefly();
 
     this.input.on('gameobjectdown', (_p, obj) => obj.fireflyRef && this.catchFirefly(obj.fireflyRef));
+    // The one extra mechanic: tapping empty night "calls" nearby fireflies.
+    this.input.on('pointerdown', (p, over) => { if (!over.length) this.callFireflies(p.x, p.y); });
   }
 
   spawnFirefly(fadeIn = false) {
@@ -62,6 +66,15 @@ export default class MainScene extends Phaser.Scene {
         if (jar.count >= TUNING.jarTarget) this.celebrate();
       },
     });
+  }
+
+  callFireflies(x, y) {
+    this.sfx('tap_miss', 0.25);
+    const ring = this.add.circle(x, y, 20).setStrokeStyle(5, PALETTE.accent, 0.8).setDepth(3);
+    this.tweens.add({ targets: ring, scale: TUNING.callRadius / 20, alpha: 0, duration: 1600, ease: 'Sine.easeOut', onComplete: () => ring.destroy() });
+    for (const f of this.fireflies) {
+      if (!f.caught && Phaser.Math.Distance.Between(f.x, f.y, x, y) < TUNING.callRadius) f.callTo(x, y);
+    }
   }
 
   celebrate() {
