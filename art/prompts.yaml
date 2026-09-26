@@ -52,6 +52,73 @@ assets:
         rounded shapes: circle head, teardrop glowing abdomen, two soft oval wings, dot eyes,
         pink cheeks, tiny smile. Front-facing, gentle flying pose.
       out_px: 256
+    v5:
+      model: gemini-3.1-flash-image
+      refs: [art/ref/firefly_yellow.png]
+      style: >
+        Pixar-style 3D rendered character, stylized animated-movie look, soft subsurface
+        lighting, smooth rounded forms, big expressive eyes, cute and calm, for ages 4-7.
+        Palette strictly: night blue #2B3A67, firefly glow #FFD166, leaf green #7BC47F,
+        pink accent #F4A6B7, cream highlight #FFF4E0.
+        Single centered subject, full body visible, generous empty margin around it.
+        Plain flat solid pure magenta #FF00FF background, no shadow on the background,
+        no gradient, no text, no border, no glow halo around the subject.
+      prompt: >
+        The same firefly character as the reference (navy head, glowing yellow abdomen,
+        translucent cream wings, rosy cheeks) as a 3D animated-movie character: big round head,
+        huge shiny eyes with reflections, soft translucent wings, warm smile.
+        Gentle flying pose, three-quarter view.
+      out_px: 256
+    v6:
+      model: gemini-3.1-flash-image
+      refs: [art/ref/firefly_yellow.png]
+      style: >
+        Soft 3D clay / plush toy render, rounded inflated forms like a vinyl or felt toy,
+        soft studio lighting, matte smooth materials, no sharp edges, cute and calm, for ages 4-7.
+        Palette strictly: night blue #2B3A67, firefly glow #FFD166, leaf green #7BC47F,
+        pink accent #F4A6B7, cream highlight #FFF4E0.
+        Single centered subject, full body visible, generous empty margin around it.
+        Plain flat solid pure magenta #FF00FF background, no shadow on the background,
+        no gradient, no text, no border, no glow halo around the subject.
+      prompt: >
+        The same firefly character as the reference as a chubby squishy clay-and-plush toy:
+        round navy head with two ball-tipped antennae, dot eyes with highlights, pink cheeks,
+        soft translucent felt wings, glowing yellow rounded abdomen. Gentle flying pose, front view.
+      out_px: 256
+    v7:
+      model: gemini-3.1-flash-image
+      refs: [art/ref/firefly_yellow.png]
+      style: >
+        2D digital illustration with a rendered look: smooth soft gradient shading,
+        gentle rim light, soft specular highlights, no outlines, rounded inflated shapes,
+        polished mobile-game character art, still clearly 2D and stylized, cute and calm, for ages 4-7.
+        Palette strictly: night blue #2B3A67, firefly glow #FFD166, leaf green #7BC47F,
+        pink accent #F4A6B7, cream highlight #FFF4E0.
+        Single centered subject, full body visible, generous empty margin around it.
+        Plain flat solid pure magenta #FF00FF background, no shadow on the background,
+        no gradient, no text, no border, no glow halo around the subject.
+      prompt: >
+        The same firefly character as the reference (navy head, glowing yellow abdomen,
+        translucent cream wings, rosy cheeks), big round head, large glossy eyes with a
+        highlight, soft translucent wings, warm smile. Gentle flying pose, three-quarter view.
+      out_px: 256
+    v8:
+      model: gemini-3.1-flash-image
+      refs: [art/ref/firefly_yellow.png]
+      style: >
+        Glossy 2D game-icon illustration, soft airbrushed shading, volumetric-looking but flat
+        orthographic view, subtle inner glow on the belly, thin light rim on edges,
+        no black outlines, ultra-rounded chubby shapes, cute and calm, for ages 4-7.
+        Palette strictly: night blue #2B3A67, firefly glow #FFD166, leaf green #7BC47F,
+        pink accent #F4A6B7, cream highlight #FFF4E0.
+        Single centered subject, full body visible, generous empty margin around it.
+        Plain flat solid pure magenta #FF00FF background, no shadow on the background,
+        no gradient, no text, no border, no glow halo around the subject.
+      prompt: >
+        The same firefly character as the reference, chubby and round, big friendly dot eyes with
+        shine, pink cheeks, two ball-tipped antennae, soft translucent rounded wings, rounded
+        glowing yellow abdomen. Gentle flying pose, front view.
+      out_px: 256
   jar:
     v1:
       model: gemini-3.1-flash-image

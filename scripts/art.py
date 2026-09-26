@@ -42,7 +42,7 @@ def asset_cfg(key, version=None):
 
 
 def build_prompt(style, cfg):
-    style = " ".join(style.split())
+    style = " ".join(cfg.get("style", style).split())  # per-version full override
     if cfg.get("no_cutout"):
         # drop the sentences that request the flat magenta background
         sentences = re.split(r"(?<=\.)\s+", style)

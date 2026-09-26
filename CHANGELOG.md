@@ -27,3 +27,9 @@
 - Choose a firefly style, then generate the pose set (see below).
 - Pose set to generate from the chosen sprite as reference (for consistency): flying/idle, wings-up, wings-down (2-frame flap),
   happy/caught, sleepy/resting; colour variants (yellow, green, pink) in the same style.
+
+## 2026-09-26 — Rendered-style firefly tests
+- Added per-version `style` override in `art.py` (replaces the global flat style) and prompt versions v5–v8:
+  v5 3D Pixar-like render, v6 3D clay/plush toy, v7 2D illustration with rendered shading, v8 glossy 2D game-icon.
+- Known issue: glowing abdomens (v5, v7-01, v8-02) pick up a magenta/pink fringe from the chroma-key background;
+  glow should be drawn in code anyway (see CLAUDE.md). Fix if one of these is chosen: prompt "no glow" + tighter despill.
