@@ -51,9 +51,8 @@ def cmd_gen(a):
         else:
             audio = client.text_to_sound_effects.convert(
                 text=text, duration_seconds=cfg["seconds"], prompt_influence=0.5)
-        with path.open("wb") as f:
-            for chunk in audio:
-                f.write(chunk)
+        data = b"".join(audio)  # consume fully before touching disk
+        path.write_bytes(data)
         print("saved", path.relative_to(ROOT))
 
 

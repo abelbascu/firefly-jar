@@ -17,3 +17,9 @@ ART: imported firefly_green from firefly_green.png (2026-09-26)
 ART: imported firefly_pink from firefly_pink.png (2026-09-26)
 
 ART: imported jar from jar.png (2026-09-26)
+
+## Setup notes
+- Setup (~1h): scaffold, pipelines, hook, deploy.
+- AI/agent mistake: committed `.env.example` after the user pasted a real Gemini key into it -> key leaked to the public repo, Google auto-disabled it. Fix: rotate key; keys only ever go in `.env`.
+- Gemini image API needed billing enabled (free tier quota 0). ElevenLabs: key ID vs secret (`sk_`) confusion.
+- `sfx.py` left empty mp3s on failed calls; fixed to write only after a successful response.
