@@ -57,3 +57,9 @@
 - Wings now flap independently: each is a textured plane rotated in depth about the body axis + swung in-plane, perspective-projected; near/far wing have different phase/amplitude. Body static.
 - Accepted as "good enough for now"; polish at the end (ideas: real generated near/far wing frames with painted perspective, more natural wing shape, antenna wiggle).
 - Baked into game-ready frames: sprite keys `firefly_side_flap_00`..`_11` (facing right, identical size/anchor, 12-frame loop ~70ms/frame, flipX for left). Regenerate with `python scripts/side_layers.py frames`.
+
+## 2026-09-26 — Front poses kept, cleanup
+- Picked front-facing poses (idle 2, wings_up 2, wings_down 2, happy 2, sleepy 1, alt_green 2, alt_pink 2) into `public/sprites/`.
+- Archived unused work to `assets/_archive/`: `exploration/firefly_style_tests` (v1-v5, v7-v8), `exploration/side_per_frame` (per-frame side poses + old GIFs), `sprites_unused` (v0 fireflies yellow/green/pink, layer sprites). Manifest cleaned.
+- `HANDOFF.md` -> `docs/archive/`; duplicate assignment docx -> `docs/archive/`.
+- New `docs/ASSETS.md` lists the approved asset keys for the game code.

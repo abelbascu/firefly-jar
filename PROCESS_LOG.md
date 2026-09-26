@@ -33,3 +33,17 @@ BUILD 2+3: Jar.js (sprite + code glow that brightens 0..10, small glowing orbs r
 BUILD 4: Celebration at 10 — jar swell, code-drawn additive sparkle particles (old sparkle art not used), happy pose + celebrate sound when those assets exist, calm fade reset. Test drives 10 catches and asserts reset. ~10 min.
 
 BUILD 5+6: "Call the fireflies" mechanic (tap empty night -> ripple + nearby fireflies drift over), DESIGN_NOTE.md, code-drawn background (moon, twinkling stars, bushes; uses 'background' sprite if present). First bush draft had translucent overlapping discs that looked muddy; redrawn opaque + night overlay. Portrait/phone: FIT scaling letterboxes the 4:3 stage, still playable. ~15 min.
+
+ART: picked firefly_pose_idle v1_02 (gemini-3.1-flash-image, 2026-09-26)
+
+ART: picked firefly_pose_wings_up v1_02 (gemini-3.1-flash-image, 2026-09-26)
+
+ART: picked firefly_pose_wings_down v1_02 (gemini-3.1-flash-image, 2026-09-26)
+
+ART: picked firefly_pose_happy v1_02 (gemini-3.1-flash-image, 2026-09-26)
+
+ART: picked firefly_pose_sleepy v1_01 (gemini-3.1-flash-image, 2026-09-26)
+
+ART: picked firefly_alt_green v1_02 (gemini-3.1-flash-image, 2026-09-26)
+
+ART: picked firefly_alt_pink v1_02 (gemini-3.1-flash-image, 2026-09-26)

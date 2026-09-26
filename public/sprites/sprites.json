@@ -1,25 +1,4 @@
 {
-  "firefly_yellow": {
-    "file": "firefly_yellow.png",
-    "file2x": "firefly_yellow@2x.png",
-    "version": "v0",
-    "source": "import:firefly_yellow.png",
-    "date": "2026-09-26"
-  },
-  "firefly_green": {
-    "file": "firefly_green.png",
-    "file2x": "firefly_green@2x.png",
-    "version": "v0",
-    "source": "import:firefly_green.png",
-    "date": "2026-09-26"
-  },
-  "firefly_pink": {
-    "file": "firefly_pink.png",
-    "file2x": "firefly_pink@2x.png",
-    "version": "v0",
-    "source": "import:firefly_pink.png",
-    "date": "2026-09-26"
-  },
   "jar": {
     "file": "jar.png",
     "file2x": "jar@2x.png",
@@ -33,24 +12,6 @@
     "version": "v6_02",
     "source": "gemini-3.1-flash-image",
     "date": "2026-09-26"
-  },
-  "firefly_side_body": {
-    "file": "firefly_side_body.png",
-    "file2x": "firefly_side_body@2x.png",
-    "version": "v1_layers",
-    "source": "gemini-3.1-flash-image",
-    "date": "2026-09-26",
-    "hingeX": 0.27,
-    "hingeY": 0.57
-  },
-  "firefly_side_wing": {
-    "file": "firefly_side_wing.png",
-    "file2x": "firefly_side_wing@2x.png",
-    "version": "v1_layers",
-    "source": "gemini-3.1-flash-image",
-    "date": "2026-09-26",
-    "originX": 1.0,
-    "originY": 0.93
   },
   "firefly_side_flap_00": {
     "file": "firefly_side_flap_00.png",
@@ -136,6 +97,55 @@
     "file2x": "firefly_side_flap_11@2x.png",
     "version": "v1_baked",
     "source": "layered-3d-flap",
+    "date": "2026-09-26"
+  },
+  "firefly_pose_idle": {
+    "file": "firefly_pose_idle.png",
+    "file2x": "firefly_pose_idle@2x.png",
+    "version": "v1_02",
+    "source": "gemini-3.1-flash-image",
+    "date": "2026-09-26"
+  },
+  "firefly_pose_wings_up": {
+    "file": "firefly_pose_wings_up.png",
+    "file2x": "firefly_pose_wings_up@2x.png",
+    "version": "v1_02",
+    "source": "gemini-3.1-flash-image",
+    "date": "2026-09-26"
+  },
+  "firefly_pose_wings_down": {
+    "file": "firefly_pose_wings_down.png",
+    "file2x": "firefly_pose_wings_down@2x.png",
+    "version": "v1_02",
+    "source": "gemini-3.1-flash-image",
+    "date": "2026-09-26"
+  },
+  "firefly_pose_happy": {
+    "file": "firefly_pose_happy.png",
+    "file2x": "firefly_pose_happy@2x.png",
+    "version": "v1_02",
+    "source": "gemini-3.1-flash-image",
+    "date": "2026-09-26"
+  },
+  "firefly_pose_sleepy": {
+    "file": "firefly_pose_sleepy.png",
+    "file2x": "firefly_pose_sleepy@2x.png",
+    "version": "v1_01",
+    "source": "gemini-3.1-flash-image",
+    "date": "2026-09-26"
+  },
+  "firefly_alt_green": {
+    "file": "firefly_alt_green.png",
+    "file2x": "firefly_alt_green@2x.png",
+    "version": "v1_02",
+    "source": "gemini-3.1-flash-image",
+    "date": "2026-09-26"
+  },
+  "firefly_alt_pink": {
+    "file": "firefly_alt_pink.png",
+    "file2x": "firefly_alt_pink@2x.png",
+    "version": "v1_02",
+    "source": "gemini-3.1-flash-image",
     "date": "2026-09-26"
   }
 }
