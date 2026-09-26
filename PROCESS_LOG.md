@@ -1,5 +1,7 @@
 # Process Log
 ## Tools & why
+- Claude Code for the build (small steps, tests + screenshots after each); Phaser 3 + Vite; Playwright for touch/mouse smoke tests.
+- Gemini image model for the firefly art (chroma-key cutouts); ElevenLabs first for audio, then code synthesis (numpy) when the API sounds were too shrill.
 ## Timeline (approx.)
 | Time | Activity | Minutes |
 |---|---|---|
@@ -8,7 +10,11 @@
 - Setup: `npm install phaser` pulled Phaser v4; spec requires v3 — pinned to ^3.90.
 - Setup: `requirements.txt` was written as UTF-16 by a PowerShell redirect; re-generated as UTF-8.
 ## Time split
+Setup ~1h · art exploration ~2h · game build (fireflies, jar, catch, celebration, mechanic, background) ~1.5h · audio iterations ~45min · fixes/polish ~30min.
 ## With more time I would…
+- Listen-test and pick audio by ear; make the ambience loop point seamless.
+- Portrait-specific layout; tap-the-jar reaction; real device test on an iPad.
+- Rewrite git history to purge the leaked (already disabled) API key in commit 47868e1.
 
 ART: imported firefly_yellow from firefly_yellow.png (2026-09-26)
 
@@ -101,3 +107,5 @@ BUILD 10: Celebration reworked per feedback: all 10 fireflies (mixed poses + gre
 AUDIO: ambience loop replaced with the user's own track "Firefly Meadow" (3:04, copied unmodified to public/audio/ambience.mp3; synth pad archived). Zero code change thanks to audio.json; game loops it at volume 0.18. ~3 min.
 
 BUG FIX: catch animation vanished — when adding the random-note scale I reused the TUNING key `catchScale` (already the firefly shrink factor), so the shrink became NaN and the firefly disappeared on tap. Renamed to `noteScale`; added a regression check that mid-flight scale is finite. Found by probing tween state in a throwaway test. ~8 min.
+
+FINAL CHECK: palette in src/config.js verified identical to the brief (#2B3A67, #FFD166, #7BC47F, #F4A6B7, #FFF4E0); no other colour literals in src except the white radial-gradient mask used for glows, which is always tinted with palette colours (rainbow also uses palette colours only). No UI text; no hardcoded asset filenames; base '/firefly-jar/'; Phaser ^3.90; build and 3/3 tests pass.
