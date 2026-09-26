@@ -1,0 +1,30 @@
+{
+  "firefly_yellow": {
+    "file": "firefly_yellow.png",
+    "file2x": "firefly_yellow@2x.png",
+    "version": "v0",
+    "source": "import:firefly_yellow.png",
+    "date": "2026-09-26"
+  },
+  "firefly_green": {
+    "file": "firefly_green.png",
+    "file2x": "firefly_green@2x.png",
+    "version": "v0",
+    "source": "import:firefly_green.png",
+    "date": "2026-09-26"
+  },
+  "firefly_pink": {
+    "file": "firefly_pink.png",
+    "file2x": "firefly_pink@2x.png",
+    "version": "v0",
+    "source": "import:firefly_pink.png",
+    "date": "2026-09-26"
+  },
+  "jar": {
+    "file": "jar.png",
+    "file2x": "jar@2x.png",
+    "version": "v0",
+    "source": "import:jar.png",
+    "date": "2026-09-26"
+  }
+}
