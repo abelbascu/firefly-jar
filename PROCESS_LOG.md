@@ -47,3 +47,15 @@ ART: picked firefly_pose_sleepy v1_01 (gemini-3.1-flash-image, 2026-09-26)
 ART: picked firefly_alt_green v1_02 (gemini-3.1-flash-image, 2026-09-26)
 
 ART: picked firefly_alt_pink v1_02 (gemini-3.1-flash-image, 2026-09-26)
+
+AUDIO: picked catch v1_03 (elevenlabs sfx, 2026-09-26)
+
+AUDIO: picked jar_fill v1_01 (elevenlabs sfx, 2026-09-26)
+
+AUDIO: picked celebrate v1_01 (elevenlabs sfx, 2026-09-26)
+
+AUDIO: picked tap_miss v2_01 (elevenlabs sfx, 2026-09-26)
+
+AUDIO: picked ambience v2_01 (elevenlabs sfx, 2026-09-26)
+
+AUDIO: generated catch, jar_fill, celebrate, tap_miss, ambience with a warmer/softer style block. Mistakes: tap_miss v1 was 0.4s (API minimum 0.5s) -> added v2; Music API needs a paid plan -> ambience v2 uses the sfx endpoint (20s) and the game loops it at volume 0.25. Picks are unaudited defaults, to be swapped by ear. ~10 min.

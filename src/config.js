@@ -38,4 +38,5 @@ export const TUNING = {
   resetFadeMs: 1600,
   // ambience
   starCount: 46,
+  ambienceVolume: 0.25,
 };

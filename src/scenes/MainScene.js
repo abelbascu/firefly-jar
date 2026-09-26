@@ -14,6 +14,8 @@ export default class MainScene extends Phaser.Scene {
     this.add.rectangle(GAME.width / 2, GAME.height / 2, GAME.width, GAME.height, PALETTE.night);
     new Background(this);
     this.jar = new Jar(this);
+    // very quiet looping ambience; Phaser holds it until the first tap unlocks audio
+    if (this.cache.audio.exists('ambience')) this.sound.play('ambience', { loop: true, volume: TUNING.ambienceVolume });
     this.fireflies = [];
     this.celebrating = false;
     for (let i = 0; i < TUNING.fireflyCount; i++) this.spawnFirefly();
