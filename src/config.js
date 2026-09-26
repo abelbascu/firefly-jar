@@ -8,8 +8,13 @@ export const PALETTE = {
 
 // Stage size is chosen once at boot from the screen's own aspect ratio, so FIT fills the whole screen without
 // stretching: the short side is 768 game px, the long side grows (1024..1800) to match the device.
-const vw = typeof window !== 'undefined' ? window.innerWidth : 1024;
-const vh = typeof window !== 'undefined' ? window.innerHeight : 768;
+// The visual viewport is the area actually visible (excludes mobile browser toolbars); innerHeight can be taller.
+export const viewSize = () => {
+  if (typeof window === 'undefined') return { w: 1024, h: 768 };
+  const v = window.visualViewport;
+  return { w: Math.round(v?.width || window.innerWidth), h: Math.round(v?.height || window.innerHeight) };
+};
+const { w: vw, h: vh } = viewSize();
 export const PORTRAIT = vh > vw;
 const clampLong = (v) => Math.min(1800, Math.max(1024, Math.round(v)));
 export const GAME = PORTRAIT

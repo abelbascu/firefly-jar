@@ -95,6 +95,10 @@ test('rotating a phone to landscape fills the screen in landscape', async ({ pag
   await page.waitForFunction(() => window.__game?.scene.getScene('MainScene')?.fireflies?.length > 0 && window.__game.scale.gameSize.width > 1024);
   const canvas = await page.evaluate(() => { const r = window.__game.canvas.getBoundingClientRect(); return r.width / r.height; });
   expect(canvas).toBeCloseTo(851 / 393, 1); // canvas fills the screen shape, no stretching
+  // the whole canvas (jar included) must be inside the visible area
+  const box = await page.evaluate(() => { const r = window.__game.canvas.getBoundingClientRect(); return { top: r.top, bottom: r.bottom, vh: window.visualViewport.height }; });
+  expect(box.top).toBeGreaterThanOrEqual(-1);
+  expect(box.bottom).toBeLessThanOrEqual(box.vh + 1);
   await page.screenshot({ path: 'test-results/rotated.png' });
 });
 
