@@ -18,16 +18,16 @@ export default class MainScene extends Phaser.Scene {
     if (this.cache.audio.exists('ambience')) this.sound.play('ambience', { loop: true, volume: TUNING.ambienceVolume });
     this.fireflies = [];
     this.celebrating = false;
-    for (let i = 0; i < TUNING.fireflyCount; i++) this.spawnFirefly();
+    for (let i = 0; i < TUNING.fireflyCount; i++) this.spawnFirefly(false, TUNING.variants[i % TUNING.variants.length]);
 
     this.input.on('gameobjectdown', (_p, obj) => obj.fireflyRef && this.catchFirefly(obj.fireflyRef));
     // The one extra mechanic: tapping empty night "calls" nearby fireflies.
     this.input.on('pointerdown', (p, over) => { if (!over.length) this.callFireflies(p.x, p.y); });
   }
 
-  spawnFirefly(fadeIn = false) {
+  spawnFirefly(fadeIn = false, variant = null) {
     const w = TUNING.wander;
-    const f = new Firefly(this, Phaser.Math.Between(w.minX, w.maxX), Phaser.Math.Between(w.minY, w.maxY), { fadeIn });
+    const f = new Firefly(this, Phaser.Math.Between(w.minX, w.maxX), Phaser.Math.Between(w.minY, w.maxY), { fadeIn, variant });
     this.fireflies.push(f);
     return f;
   }
@@ -64,7 +64,7 @@ export default class MainScene extends Phaser.Scene {
         f.destroy();
         jar.add();
         this.sfx('jar_fill');
-        this.spawnFirefly(true); // nothing is ever lost: a new one drifts in
+        this.spawnFirefly(true, f.variant); // nothing is ever lost: a new one drifts in
         if (jar.count >= TUNING.jarTarget) this.celebrate();
       },
     });

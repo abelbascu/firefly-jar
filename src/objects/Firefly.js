@@ -5,8 +5,9 @@ import { makeGlow } from './glow.js';
 const rnd = (a, b) => Phaser.Math.Between(a, b);
 
 export default class Firefly {
-  constructor(scene, x, y, { fadeIn = false } = {}) {
+  constructor(scene, x, y, { fadeIn = false, variant = null } = {}) {
     this.scene = scene;
+    this.variant = variant && scene.textures.exists(variant) ? variant : null;
     this.caught = false;
     this.dir = 1;
     this.frame = 0;
@@ -55,13 +56,18 @@ export default class Firefly {
   get y() { return this.box.y; }
 
   idleKey() {
+    if (this.variant) return this.variant;
     for (const k of ['firefly_pose_idle', 'firefly']) if (this.has(k)) return k;
     return 'firefly_fallback';
   }
 
   flapKeys() {
-    const k = ['firefly_side_wings_up', 'firefly_side_wings_mid', 'firefly_side_wings_down', 'firefly_side_wings_mid'];
-    return k.every((s) => this.has(s)) ? k : null;
+    if (this.variant) return null; // colour variants only have a front sprite
+    if (!this.flap) {
+      const k = Array.from({ length: 12 }, (_, i) => `firefly_side_flap_${String(i).padStart(2, '0')}`);
+      this.flap = k.every((s) => this.has(s)) ? k : [];
+    }
+    return this.flap.length ? this.flap : null;
   }
 
   setTex(key) {

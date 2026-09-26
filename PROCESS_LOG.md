@@ -59,3 +59,5 @@ AUDIO: picked tap_miss v2_01 (elevenlabs sfx, 2026-09-26)
 AUDIO: picked ambience v2_01 (elevenlabs sfx, 2026-09-26)
 
 AUDIO: generated catch, jar_fill, celebrate, tap_miss, ambience with a warmer/softer style block. Mistakes: tap_miss v1 was 0.4s (API minimum 0.5s) -> added v2; Music API needs a paid plan -> ambience v2 uses the sfx endpoint (20s) and the game loops it at volume 0.25. Picks are unaudited defaults, to be swapped by ear. ~10 min.
+
+BUILD 7: Wired the art agent's 12 baked side flap frames (70ms/frame, flipX by direction) and the green/pink front variants into Firefly. AI note: earlier code expected up/mid/down keys that were replaced by flap_00..11; fixed from docs/ASSETS.md. ~8 min.

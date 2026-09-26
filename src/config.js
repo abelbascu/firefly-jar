@@ -16,7 +16,8 @@ export const TUNING = {
   wander: { minX: 70, maxX: 954, minY: 80, maxY: 520 },
   moveMs: [2600, 5200], // duration of one eased leg
   hoverMs: [500, 1600], // pause between legs (front-idle pose)
-  flapFrameMs: 120, // up, mid, down, mid
+  flapFrameMs: 70, // 12 baked side frames, looped
+  variants: [null, null, 'firefly_alt_green', null, null, 'firefly_alt_pink', null],
   glowBase: 0.55,
   glowPulseMs: 1800,
   glowSize: 260, // additive glow display diameter
