@@ -47,7 +47,8 @@ def build_prompt(style, cfg):
         # drop the sentences that request the flat magenta background
         sentences = re.split(r"(?<=\.)\s+", style)
         style = " ".join(s for s in sentences if not re.search(r"magenta|background|halo", s, re.I))
-    return f"{style} {' '.join(cfg['prompt'].split())}"
+    extra = " ".join(cfg.get("style_extra", "").split())
+    return f"{style} {extra} {' '.join(cfg['prompt'].split())}".replace("  ", " ")
 
 
 # ---------------------------------------------------------------- generation
@@ -196,8 +197,8 @@ def cmd_sheet(a):
         img = fit_longest(img, tile - 40)
         x, y = (i % cols) * tile, (i // cols) * tile
         sheet.paste(img, (x + (tile - img.width) // 2, y + (tile - img.height) // 2), img)
-        draw.rectangle([x + 6, y + 6, x + 92, y + 72], fill=CREAM)
-        draw.text((x + 14, y + 6), f.stem.split("_")[-1], fill=NAVY, font=font)
+        draw.rectangle([x + 6, y + 6, x + 190, y + 72], fill=CREAM)
+        draw.text((x + 14, y + 6), f.stem.replace("_", "-"), fill=NAVY, font=font)
         draw.rectangle([x, y, x + tile - 1, y + tile - 1], outline=CREAM)
     out = d / "_sheet.png"
     sheet.save(out)

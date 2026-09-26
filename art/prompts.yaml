@@ -17,6 +17,41 @@ assets:
         ball tips, rosy cheeks, small smile, translucent cream-outlined wings, glowing
         yellow abdomen. Gentle flying pose, three-quarter view.
       out_px: 256
+    v2:
+      model: gemini-3.1-flash-image
+      refs: [art/ref/firefly_yellow.png]
+      style_extra: >
+        Extra-chubby, ultra-round toddler-toy proportions like a soft plush blob character
+        (Teletubbies-like friendliness): huge round head merged with a fat pillowy body,
+        tiny stubby arms, very large simple glossy eyes, big rosy cheeks, no sharp corners anywhere.
+      prompt: >
+        The same firefly character identity as the reference (navy head, glowing yellow
+        abdomen, cream translucent wings, rosy cheeks) redesigned as a super round, squishy,
+        baby-like plush blob. Tiny rounded wings. Gentle flying pose, front view.
+      out_px: 256
+    v3:
+      model: gemini-3.1-flash-image
+      refs: [art/ref/firefly_yellow.png]
+      style_extra: >
+        Pixar-inspired charm but still FLAT 2D vector: oversized expressive shiny eyes with
+        a small white highlight, big head, soft rounded silhouette, warm friendly
+        expression, subtle soft two-tone shading only, no 3D render, no realistic texture.
+      prompt: >
+        The same firefly character as the reference, redesigned as an endearing animated-movie
+        mascot with a big round head, huge shiny eyes and a cheerful smile, rounded wings
+        with soft leaf details, glowing yellow abdomen. Gentle flying pose, three-quarter view.
+      out_px: 256
+    v4:
+      model: gemini-3.1-flash-image
+      refs: [art/ref/firefly_yellow.png]
+      style_extra: >
+        Simple sticker / paper-cut look: perfectly smooth rounded shapes, minimal detail,
+        very few colours, chunky simplified forms a 4-year-old can read at a glance.
+      prompt: >
+        The same firefly character as the reference, simplified into the most minimal
+        rounded shapes: circle head, teardrop glowing abdomen, two soft oval wings, dot eyes,
+        pink cheeks, tiny smile. Front-facing, gentle flying pose.
+      out_px: 256
   jar:
     v1:
       model: gemini-3.1-flash-image

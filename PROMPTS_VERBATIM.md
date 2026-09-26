@@ -45,3 +45,15 @@ the key doesn't start with sk
 <ide_opened_file>The user opened the file c:\Users\camin\Desktop\firefly-jar\.env in the IDE. This may or may not be related to the current task.</ide_opened_file>
 secret copied yes do what';s still open
 ```
+
+### 2026-09-26 11:53 — Claude Code
+```
+document what you did in changelog.md if not done
+
+for the firefly, vi_-1 is nice as the wings have more detail, i guess this was just a test to see if the image is also cut well, it seems so . but now, could we test different firefly styles? like pixar, or teletubbies style, very rounded for little kids as the assegnment doc specifices
+```
+
+### 2026-09-26 11:55 — Claude Code
+```
+important if that one we decide one, we need to create the different positions of the firefly
+```
